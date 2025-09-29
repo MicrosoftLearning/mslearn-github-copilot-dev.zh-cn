@@ -14,7 +14,7 @@ GitHub Copilot 可通过生成解释和文档来帮助你了解和记录代码�
 
 ## 开始之前
 
-实验室环境必须具备以下条件：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、带有 C# Dev Kit 扩展的 Visual Studio Code，以及启用了 GitHub Copilot 的 GitHub 帐户的访问权限。
+实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
 
 如果你将本地电脑用作本练习的实验室环境：
 
@@ -26,9 +26,9 @@ GitHub Copilot 可通过生成解释和文档来帮助你了解和记录代码�
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请将以下 URL 粘贴到浏览器的网站导航栏中：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-- 打开命令终端，并运行以下命令：
+- 为了确保 .NET SDK 配置为使用官方 NuGet.org 存储库作为下载和还原包的源：
 
-    若要确保将 Visual Studio Code 配置为使用正确的 .NET 版本，请运行以下命令：
+    打开命令终端，然后运行以下命令：
 
     ```bash
 
@@ -38,7 +38,7 @@ GitHub Copilot 可通过生成解释和文档来帮助你了解和记录代码�
 
 ## 练习场景
 
-你是在本地社区的 IT 部门工作的开发人员。 支持公共图书馆的后端系统在一场火灾中被烧毁。 你的团队需要开发一个临时解决方案，以帮助图书馆员工管理他们的运营，直到系统可以被替换为止。 你的团队已选择使用 GitHub Copilot 来加速开发流程。
+你是一名在当地社区 IT 部门工作的开发人员。 支持公共图书馆的后端系统在火灾中丢失。 你的团队需要开发临时解决方案，以帮助图书馆员工管理其操作，直到可以更换系统。 你的团队已选择使用 GitHub Copilot 来加速开发流程。
 
 你的同事开发了图书馆应用程序的初始版本，但由于时间有限，他们没有机会记录代码。 你需要分析代码库并为项目创建文档。
 
@@ -72,7 +72,7 @@ GitHub Copilot 可通过生成解释和文档来帮助你了解和记录代码�
 
 1. 打开已解压缩的文件所在的文件夹，然后将 AccelerateDevGHCopilot 文件夹复制到易于访问的位置，例如 Windows 桌面文件夹。****
 
-1. 在 Visual Studio Code 中打开 AccelerateDevGHCopilot 文件夹。****
+1. 在 Visual Studio Code 中打开 AccelerateDevGHCopilot 文件夹****。
 
     例如：
 

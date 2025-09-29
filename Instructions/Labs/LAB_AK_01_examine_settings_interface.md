@@ -10,7 +10,7 @@ Visual Studio Code 为开发人员提供无缝且可自定义的 GitHub Copilot 
 
 完成本练习大约需要 25 分钟****。
 
-> **重要说明**：要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用现有的 GitHub Copilot 订阅完成本练习。
+> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
@@ -19,7 +19,7 @@ Visual Studio Code 为开发人员提供无缝且可自定义的 GitHub Copilot 
 - Git 2.48 或更高版本
 - .NET 或 Python：
 
-    -  .NET SDK 9.0 或更高版本，包含具有 C# 开发工具包扩展的 Visual Studio Code********。
+    - .NET SDK 9.0 或更高版本，包含具有 C# 开发工具包扩展的 Visual Studio Code********。
     - Python 3.10 或更高版本，包含具有 Python 扩展的 Visual Studio Code********
 
 - 启用了对具有 GitHub Copilot 的 GitHub 帐户的访问。
@@ -30,31 +30,35 @@ Visual Studio Code 为开发人员提供无缝且可自定义的 GitHub Copilot 
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请在浏览器中打开以下链接：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-如果在本练习中使用托管实验室环境：
+如果你将在本练习中使用托管实验室环境：
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请将以下 URL 粘贴到浏览器的网站导航栏中：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-- 打开命令终端，并运行以下命令：
+- 为了确保 .NET SDK 配置为使用官方 NuGet.org 存储库作为下载和还原包的源：
 
-    为确保将 Visual Studio Code 配置为使用正确的 .NET 版本，请运行以下命令****：
+    打开命令终端，然后运行以下命令：
 
     ```bash
 
     dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 
     ```
-    
-    或
 
-    为确保将 Visual Studio Code 配置为使用正确的 Python 版本，请验证 Python 安装是否为 3.10 或更高版本：
+- 若要为 Python 配置托管实验室环境，请执行以下步骤：
 
-    ```bash
-    python --version
-    ```
+    1. 若要确定在托管环境中安装的 Python 版本，请运行以下命令：
+
+        ```bash
+        python --version
+        ```
+
+        如有必要，请使用以下 URL 中的以下步骤在 Visual Studio Code 中配置 Python：<a href="https://code.visualstudio.com/docs/python/python-tutorial" target="_blank">VS Code 中的 Python 入门</a>。
+
+    1. 使用 Visual Studio Code 中的“扩展”视图安装 Python 扩展。
 
 ## 练习场景
 
-你是在本地社区的 IT 部门工作的开发人员。 支持公共图书馆的后端系统在火灾中丢失。 你的团队需要开发临时解决方案，以帮助图书馆员工管理其操作，直到可以更换系统。 你的团队已选择使用 GitHub Copilot 来加速开发流程。
+你是一名在当地社区 IT 部门工作的开发人员。 支持公共图书馆的后端系统在火灾中丢失。 你的团队需要开发临时解决方案，以帮助图书馆员工管理其操作，直到可以更换系统。 你的团队已选择使用 GitHub Copilot 来加速开发流程。
 
 本练习包括以下任务：
 
@@ -207,7 +211,7 @@ GitHub Copilot 的高效工作功能易于访问并无缝集成到工作流中�
 
         - **询问**：使用此模式可以向 GitHub Copilot 询问关于代码库的问题。 可以要求 GitHub Copilot 解释代码、提供更改建议或提供有关代码库的信息。
         - **编辑**：使用此模式在工作区中编辑代码。 你可以使用 GitHub Copilot 重构代码、添加备注或对代码执行其他更改。
-        - 代理****：使用此模式以智能体身份运行 GitHub Copilot。 可以使用 GitHub Copilot 运行命令、执行代码或在工作区中执行其他任务。
+        - 代理****：使用此模式以代理身份运行 GitHub Copilot。 可以使用 GitHub Copilot 运行命令、执行代码或在工作区中执行其他任务。
 
     - “选取模型”菜单：“选取模型”菜单位于“聊天模式”菜单右侧。 可以使用此按钮选择 GitHub Copilot 用于生成代码建议的模型。 默认模式为 GPT-4o。 根据 GitHub Copilot 订阅、GitHub Copilot 设置和区域中的可用模型，模型选择可能会受到限制。
 
@@ -480,4 +484,4 @@ GitHub Copilot 根据编辑器中的代码上下文提供代码补全建议。 �
 
 ## 清理
 
-现已完成练习，请花点时间确保你未更改不想保留的 GitHub 帐户或 GitHub Copilot 订阅。 如果执行了任何更改，请立即还原。
+现已完成练习，请花点时间确保你未更改不想保留的 GitHub 帐户或 GitHub Copilot 订阅。 如果你进行了任何更改，请立即还原。

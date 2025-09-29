@@ -12,7 +12,7 @@ lab:
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
+> **重要说明**：要完成本练习，需要提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
@@ -30,27 +30,13 @@ lab:
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请将以下 URL 粘贴到浏览器的网站导航栏中：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-- 打开命令终端，并运行以下命令：
+- 为了确保 .NET SDK 配置为使用官方 NuGet.org 存储库作为下载和还原包的源：
 
-    若要确保将 Visual Studio Code 配置为使用正确的 .NET 版本，请运行以下命令：
+    打开命令终端，然后运行以下命令：
 
     ```bash
 
     dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
-
-    ```
-
-    若要确保 Git 配置为使用你的姓名和电子邮件地址，请使用你的信息更新以下命令，然后运行这些命令：
-
-    ```bash
-
-    git config --global user.name "John Doe"
-
-    ```
-
-    ```bash
-
-    git config --global user.email johndoe@example.com
 
     ```
 
@@ -70,7 +56,7 @@ lab:
 
     1. 导航到实验室环境中的下载文件夹。
 
-    1. 右键单击 GHCopilotEx7LabApps.zip，然后选择“全部解压”******。
+    1. 右键单击 GHCopilotEx7LabApps.zip，然后选择“全部解压”********。
 
     1. 选择“完成时显示解压缩的文件”，然后选择“解压缩”。
 

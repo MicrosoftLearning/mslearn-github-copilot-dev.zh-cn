@@ -6,17 +6,17 @@ lab:
 
 # 使用 GitHub Copilot 实现性能分析
 
-性能分析是软件开发的关键方面，可帮助识别和解决性能瓶颈和代码效率低下的问题。
+性能分析是软件开发的重要方面，可帮助识别和解决性能瓶颈和代码效率低下的问题。
 
 在本练习中，你将针对代码性能不佳且低效的现有项目，分析用于提高代码性能的选项，重构代码以解决已识别的问题，并测试重构的代码，以确保代码在保留原有功能和可读性的同时性能得到改进。 你将在“询问”模式下使用 GitHub Copilot 来了解现有代码项目并深入了解有关已识别问题的选项。 在“代理”模式下使用 GitHub Copilot 重构代码并提高性能。 测试原来的代码和重构代码，以度量更改的影响。
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：要完成本练习，需要提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用现有的 GitHub Copilot 订阅完成本练习。
+> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
-实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、带有 C# Dev Kit 扩展的 Visual Studio Code，以及启用了 GitHub Copilot 的 GitHub 帐户访问权限。
+实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
 
 ### 配置实验室环境
 
@@ -26,26 +26,18 @@ lab:
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请在浏览器中打开以下链接：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-如果在本练习中使用托管实验室环境：
+如果你将在本练习中使用托管实验室环境：
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请将以下 URL 粘贴到浏览器的网站导航栏中：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-- 打开命令终端，并运行以下命令：
+- 为了确保 .NET SDK 配置为使用官方 NuGet.org 存储库作为下载和还原包的源：
 
-    若要确保将 Visual Studio Code 配置为使用正确的 .NET 版本，请运行以下命令：
+    打开命令终端，然后运行以下命令：
 
     ```bash
+
     dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
-    ```
 
-    要确保 Git 配置为使用你的姓名和电子邮件地址，请使用你的信息更新以下命令，然后运行这些命令：
-
-    ```bash
-    git config --global user.name "John Doe"
-    ```
-
-    ```bash
-    git config --global user.email johndoe@example.com
     ```
 
 ### 下载示例代码项目
@@ -295,7 +287,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     ******** 打开 ProductCatalog.cs 并选择 GetProductById 方法。 在对话助手中使用以下提示：
 
     ```text
-    Optimize this GetProductById method to improve performance. Consider using a dictionary lookup instead of linear search and implement proper caching mechanisms.
+    Optimize this GetProductById method to improve performance. Consider using a dictionary lookup instead of linear search and implement proper caching mechanisms. Retain any existing artificial/simulated delays for "before and after" performance comparisons.
     ```
 
     查看 GitHub Copilot 建议的改进并实现更改。 优化的版本应包括：
@@ -309,7 +301,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     ******** 在 ProductCatalog.cs 中选择 SearchProducts 方法，并使用此提示：
 
     ```text
-    Refactor the SearchProducts method to eliminate performance bottlenecks. Optimize the search algorithm and remove unnecessary delays while maintaining search functionality.
+    Refactor the SearchProducts method to eliminate performance bottlenecks. Optimize the search algorithm and remove unnecessary delays while maintaining search functionality. Retain any existing artificial/simulated delays for "before and after" performance comparisons.
     ```
 
     应用 GitHub Copilot 的建议来实现：
@@ -323,7 +315,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     ******** 打开 OrderProcessor.cs 并选择 CalculateOrderTotal 方法。 提交此提示：
 
     ```text
-    Optimize the CalculateOrderTotal method to reduce redundant product lookups and improve calculation performance. Consider batch operations and caching strategies.
+    Optimize the CalculateOrderTotal method to reduce redundant product lookups and improve calculation performance. Consider batch operations and caching strategies. Retain any existing artificial/simulated delays for "before and after" performance comparisons.
     ```
 
     实现建议的改进，其中应包括：
@@ -337,7 +329,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     ******** 在 OrderProcessor.cs 中选择 FinalizeOrderAsync 方法，并使用此提示：
 
     ```text
-    Refactor the FinalizeOrderAsync method to improve async performance. Focus on parallel processing where possible and optimizing await patterns.
+    Refactor the FinalizeOrderAsync method to improve async performance. Focus on parallel processing where possible and optimizing await patterns. Retain any existing artificial/simulated delays for "before and after" performance comparisons.
     ```
 
     应用建议的更改来实现：
@@ -351,7 +343,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     ******** 打开 InventoryManager.cs 并选择 UpdateStockLevels 方法。 使用此提示：
 
     ```text
-    Optimize the UpdateStockLevels method to support batch operations and reduce individual update overhead. Implement efficient logging and remove unnecessary delays.
+    Optimize the UpdateStockLevels method to support batch operations and reduce individual update overhead. Implement efficient logging, but retain any existing artificial delays for performance comparison.
     ```
 
     实现改进，包括：
@@ -365,7 +357,7 @@ GitHub Copilot 的代理模式提供一个自治代理，可帮助完成编程�
     **** 打开 Services/EmailService.cs 并选择电子邮件发送方法。 提交此提示：
 
     ```text
-    Optimize the email service to support parallel email processing and improve async performance. Consider implementing email queuing and batch operations.
+    Optimize the email service to support parallel email processing and improve async performance. Consider implementing email queuing and batch operations. Retain any existing artificial/simulated delays for "before and after" performance comparisons.
     ```
 
     应用建议的优化以实现：

@@ -10,7 +10,7 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用现有的 GitHub Copilot 订阅完成本练习。
+> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
@@ -22,13 +22,13 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请在浏览器中打开以下链接：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-如果在本练习中使用托管实验室环境：
+如果你将在本练习中使用托管实验室环境：
 
 - 有关在 Visual Studio Code 中启用 GitHub Copilot 订阅的帮助，请将以下 URL 粘贴到浏览器的网站导航栏中：<a href="https://go.microsoft.com/fwlink/?linkid=2320158" target="_blank">在 Visual Studio Code 中启用 GitHub Copilot</a>。
 
-- 打开命令终端，并运行以下命令：
+- 为了确保 .NET SDK 配置为使用官方 NuGet.org 存储库作为下载和还原包的源：
 
-    为确保将 Visual Studio Code 配置为使用正确的 .NET 版本，请运行以下命令：
+    打开命令终端，然后运行以下命令：
 
     ```bash
 
@@ -38,15 +38,15 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 
 ## 练习场景
 
-你是在本地社区的 IT 部门工作的开发人员。 支持公共图书馆的后端系统在火灾中丢失。 你的团队需要开发临时解决方案，以帮助图书馆员工管理其操作，直到可以更换系统。 你的团队已选择使用 GitHub Copilot 来加速开发流程。
+你是一名在当地社区 IT 部门工作的开发人员。 支持公共图书馆的后端系统在火灾中丢失。 你的团队需要开发一个临时解决方案，帮助图书馆员工管理其操作，直到可以更换系统。 你的团队选择使用 GitHub Copilot 来加速开发流程。
 
-你移交了图书馆应用程序的初始版本进行评审。 评审团队确定了可提升代码质量、性能、可读性、可维护性和安全性的方面。
+你提交了图书馆应用程序的初始版本以待评审。 评审团队确定了可提升代码质量、性能、可读性、可维护性和安全性的方面。
 
 系统会分配以下更新：
 
 1. 将 EnumHelper 类重构为使用静态字典，而不是反射。
 
-    - 使用静态字典可以提高性能（去除反射开销）。
+    - 使用静态字典可以提高性能（消除反射的开销）。
     - 消除反射还可以提高代码可读性、可维护性和安全性。
 
 1. 重构数据访问方法以使用 LINQ（语言集成查询），而不是 foreach 循环。
@@ -57,7 +57,7 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 本练习包括以下任务：
 
 1. 在 Visual Studio Code 中设置图书馆应用程序。
-1. 在“提问”和“编辑”模式下使用聊天视图分析和重构代码。
+1. 在“询问”和“编辑”模式下使用聊天视图来分析和重构代码。
 1. 在“编辑”和“智能体”模式下使用内联聊天和聊天视图来重构代码。
 
 ## 在 Visual Studio Code 中设置图书馆应用程序
@@ -92,7 +92,7 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 
     1. 在 Visual Studio Code 中的“文件”菜单上，选择“打开文件夹” 。
 
-    1. 导航到 Windows Desktop 文件夹，选择 AccelerateDevGHCopilot，然后选择“选择文件夹”********。
+    1. 导航到 Windows 桌面文件夹，选择“AccelerateDevGHCopilot”，然后选择“选择文件夹”********。
 
 1. 在 Visual Studio Code“解决方案资源管理器”视图中，验证以下解决方案结构：
 
@@ -110,22 +110,22 @@ GitHub Copilot 可用于评估整个代码库，并建议有助于重构和改�
 
     你将看到多个警告，但不应出现任何错误。
 
-## 在“提问”和“编辑”模式下使用聊天视图分析和重构代码
+## 在“询问”和“编辑”模式下使用聊天视图分析和重构代码
 
 反射是一项强大的编码功能，可用于在运行时检查和操作对象。 但是，反射可能很慢，并且存在与应考虑的反射相关的潜在安全风险。
 
 你需要：
 
-1. 分析工作区并调查如何解决已分配任务。
+1. 分析工作区并调查如何解决已分配的任务。
 1. 将 EnumHelper 类重构为使用静态字典，而不是反射。
 
-### 在“提问”模式下使用聊天视图分析 EnumHelper 类
+### 在“询问”模式下使用聊天视图分析 EnumHelper 类
 
-GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和“智能体”************。 每个模式专为与 GitHub Copilot 进行不同类型的交互而设计。
+GitHub Copilot 的聊天视图有三种模式：“询问”、“编辑”和“智能体”************。 每个模式专为与 GitHub Copilot 进行不同类型的交互而设计。
 
-- **询问**：使用此模式可以向 GitHub Copilot 询问关于代码库的问题。 可以要求 GitHub Copilot 解释代码、提供更改建议或提供有关代码库的信息。
-- **编辑**：使用此模式编辑所选代码文件。 你可以使用 GitHub Copilot 重构代码、添加备注或对代码执行其他更改。
-- 代理****：使用此模式以智能体身份运行 GitHub Copilot。 可以使用 GitHub Copilot 运行命令、执行代码或在工作区中执行其他任务。
+- **** 询问：使用此模式可以向 GitHub Copilot 询问关于代码库的问题。 可以要求 GitHub Copilot 解释代码、提供更改建议或提供有关代码库的信息。
+- 编辑****：使用此模式可以编辑所选的代码文件。 可以使用 GitHub Copilot 重构代码、添加注释或对代码执行其他更改。
+- 代理****：使用此模式可以以智能体身份运行 GitHub Copilot。 可以使用 GitHub Copilot 运行命令、执行代码或在工作区中执行其他任务。
 
 在该练习的本部分中，将在“询问”模式下使用聊天视图来分析编码分配。
 
@@ -165,13 +165,13 @@ GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和�
     }
     ```
 
-1. 打开 GitHub Copilot 对话助手视图。
+1. 打开 GitHub Copilot 聊天视图。
 
     聊天视图提供一个托管对话界面，用于与 GitHub Copilot 交互。
 
-    可以使用位于 Visual Studio Code 窗口顶部的“切换聊天”按钮（位于搜索文本框右侧）将聊天视图切换为打开或关闭****。
+    可以使用位于 Visual Studio Code 窗口顶部的“切换聊天”按钮（位于搜索文本框右侧）将聊天视图在打开或关闭之间切换****。
 
-    ![屏幕截图显示 Copilot“切换聊天”按钮。](./Media/m01-github-copilot-toggle-chat.png)
+    ![显示 Copilot“切换聊天”按钮的屏幕截图。](./Media/m01-github-copilot-toggle-chat.png)
 
     还可以使用键盘快捷方式 Ctrl+Alt+I 切换聊天视图****。
 
@@ -199,7 +199,7 @@ GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和�
     @workspace Which files in this workspace are used to store the enum values passed to the GetDescription method?
     ```
 
-    响应应告知你检查 Enums 文件夹。 枚举值在 LoanExtensionStatus、LoanReturnStatus和 MembershipRenewalStatus 文件中定义************。
+    响应应告知你检查 Enums 文件夹。 枚举值在 LoanExtensionStatus、LoanReturnStatus 和 MembershipRenewalStatus 文件中定义************。
 
 1. 将以下文件添加到聊天上下文：
 
@@ -224,7 +224,7 @@ GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和�
 
     编写提示以询问 GitHub Copilot 如何解决问题时，请首先说明要解决的问题。 使用简洁的句子来描述详细信息、指定约束和标识资源。 最后，请务必告诉 GitHub Copilot 响应中要包含的内容。
 
-    在本例中，提示中应首先描述问题/目标。 告知 GitHub Copilot，你需要重构 EnumHelper 类并删除使用反射的任何代码****。 告知 GitHub Copilot，你希望使用字典来提供枚举描述属性。 说明每个枚举需要单独的字典，并告知 GitHub Copilot，枚举值应源自你命名的文件。 最后，请 GitHub Copilot 说明如何更新 EnumHelper 类，并说明你需要包含更新代码的代码示例****。
+    在本例中，提示中应首先描述问题/目标。 告知 GitHub Copilot，你需要重构 EnumHelper 类并移除使用反射的任何代码****。 告知 GitHub Copilot，你希望使用字典来提供枚举描述属性。 说明每个枚举需要单独的字典，并告知 GitHub Copilot，枚举值应源自你命名的文件。 最后，请 GitHub Copilot 说明如何更新 EnumHelper 类，并说明你需要包含更新代码的代码示例****。
 
 1. 请花点时间查看 GitHub Copilot 提供的响应。
 
@@ -313,17 +313,17 @@ GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和�
 
     前两个按钮可将代码复制到编辑器。 第三个按钮可将代码复制到剪贴板。
 
-> 注意****：可以使用“询问”模式更新 EnumHelper 类****。 但是，编辑模式直接在代码编辑器中重构代码，并提供用于接受更新的更多选项。
+> 注意****：可以使用“询问”模式更新 EnumHelper 类****。 但是，“编辑”模式可直接在代码编辑器中重构代码，并提供用于接受更新的更多选项。
 
-### 使用编辑模式下的聊天视图来重构 EnumHelper 类
+### 使用“编辑”模式下的聊天视图来重构 EnumHelper 类
 
-聊天视图的“编辑”模式用于编辑工作区中的代码。 你可以使用编辑模式重构代码、添加备注或对代码执行其他更改。
+聊天视图的“编辑”模式用于编辑工作区中的代码。 可以使用“编辑”模式重构代码、添加注释或对代码执行其他更改。
 
 1. 在聊天视图中，选择“设置模式”，然后选择“编辑”********。
 
-    当系统提示在编辑模式下启动新会话时，请选择“是”****。
+    当系统提示在“编辑”模式下启动新会话时，选择“是”****。
 
-    在“编辑”模式下，GitHub Copilot 在代码编辑器中会将响应显示为代码更新建议****。 实现新功能、修复 bug 或重构代码时，通常会使用编辑模式。
+    在“编辑”模式下，GitHub Copilot 会在代码编辑器中将响应显示为代码更新建议****。 实现新功能、修复 bug 或重构代码时，通常会使用“编辑”模式。
 
 1. 将以下文件添加到聊天上下文：
 
@@ -344,9 +344,9 @@ GitHub Copilot 的聊天视图有三种模式：“提问”、“编辑”和�
 
 1. 请花点时间查看建议的代码更新。
 
-    查看建议的更新，确保枚举值来自 LoanExtensionStatus.cs LoanReturnStatus.c s和 MembershipRenewalStatus.cs 文件************。
+    查看建议的更新，确保枚举值来自 LoanExtensionStatus.cs、LoanReturnStatus.cs 和 MembershipRenewalStatus.cs 文件************。
 
-    可以打开每个枚举文件，验证字典中的枚举值是否正确。 如果发现差异，请让 GitHub Copilot 分别更新每个枚举的字典。 例如，可以对 LoanExtensionStatus 枚举使用以下提示****：
+    可以打开每个枚举文件，验证字典中的枚举值是否正确。 如果发现差异，请让 GitHub Copilot 分别为每个枚举更新字典。 例如，可以对 LoanExtensionStatus 枚举使用以下提示****：
 
     ```plaintext
 
@@ -451,8 +451,8 @@ LINQ 是 C# 中的一项强大功能，可用于以统一的方式查询集合�
 本练习的本部分包括以下任务：
 
 - 使用内联聊天重构 JsonData 类。
-- 在编辑模式下使用聊天视图重构 JsonLoanRepository 类。
-- 在智能体模式下使用聊天视图重构 JsonPatronRepository 类。
+- 在“编辑”模式下使用聊天视图重构 JsonLoanRepository 类。
+- 在“智能体”模式下使用聊天视图重构 JsonPatronRepository 类。
 
 ### 使用内联聊天重构 JsonData 类
 
@@ -533,13 +533,13 @@ JsonData 类包括以下数据访问方法：GetPopulatedPatron、GetPopulatedLo
 
     可以分解填充 Loans 集合的 LINQ 代码行****：
 
-    - **Loans!**：Loans!**** 表达式访问 Loans 集合****。 重载 **!** 运算符是一个允许为 null 的运算符，表示开发人员确信 Loans 不为 null****。 调用 GetPopulatedPatron 方法前，应确保 Loans 已正确初始化********。
+    - Loans!****：Loans!**** 表达式用于访问 Loans 集合****。 重载 **!** 运算符是一个允许为 null 的运算符，表示开发人员确信 Loans 不为 null****。 调用 GetPopulatedPatron 方法前，应确保 Loans 已正确初始化********。
 
-    - **.Where(loan => loan.PatronId == p.Id)**：此代码筛选借阅，仅包含属于输入借阅者“p”的借阅****。
+    - .Where(loan => loan.PatronId == p.Id)****：此代码筛选借阅，仅包含属于输入借阅者“p”的借阅****。
 
-    - **.Select(GetPopulatedLoan)**：此代码使用 GetPopulatedLoan 方法转换每个筛选的借阅****。
+    - .Select(GetPopulatedLoan)****：此代码使用 GetPopulatedLoan 方法转换每个筛选的借阅****。
 
-    - **.ToList()**：将结果转换为“列表\<Loan\>”****。
+    - .ToList()****：将结果转换为“列出\<Loan\>”****。
 
 1. 若要接受建议的更新，请选择“接受”****。
 
@@ -625,7 +625,7 @@ JsonData 类包括以下数据访问方法：GetPopulatedPatron、GetPopulatedLo
 
 1. 使用“说明”**** 智能操作查看 LINQ 查询的说明。
 
-    要打开“说明”智能操作，请在编辑器中选择代码，右键单击所选代码，选择 Copilot，然后选择“说明”********。 “说明”智能操作提供对所选代码的详细说明****。 在本例中，代码中使用 LINQ 查询。
+    若要打开“说明”智能操作，请在编辑器中选择代码，右键单击所选代码，选择 Copilot，然后选择“说明”********。 “说明”智能操作提供对所选代码的详细说明****。 在本例中，代码中使用 LINQ 查询。
 
     例如，可以对 GetPopulatedBook 方法使用“说明”智能操作，以查看对用于填充 Book 对象 Author 属性的 LINQ 查询的说明****************。
 
@@ -656,7 +656,7 @@ JsonData 类包括以下数据访问方法：GetPopulatedPatron、GetPopulatedLo
 
 1. 生成解决方案以确保不会出现错误。
 
-### 在编辑模式下使用聊天视图重构 JsonLoanRepository 类
+### 在“编辑”模式下使用聊天视图重构 JsonLoanRepository 类
 
 JsonLoanRepository 类包括 GetLoan 和 UpdateLoan 数据访问方法********。 你将重构这两种方法，将 foreach 循环替换为 LINQ，以提高代码可读性和可维护性。
 
@@ -715,7 +715,7 @@ JsonLoanRepository 类包括 GetLoan 和 UpdateLoan 数据访问方法********�
     }
     ```
 
-    更新的代码使用 LINQ 筛选借阅集合，以仅包含具有指定 ID 的借阅。 请注意，应将“借阅”声明为可为null (Loan? loan)********。 然后，它使用 GetPopulatedLoan 方法转换借阅，并返回第一个结果****。 如果未找到匹配的借阅，FirstOrDefault 将返回 null********。 然后，该方法返回此借阅对象，如果没有具有指定“id”的借阅，该对象可能为 null****。 此方法可确保返回的借阅完全填充所有必要的相关数据，从而全面了解借阅记录。
+    更新的代码使用 LINQ 筛选借阅集合，以仅包含具有指定 ID 的借阅。 请注意，应将“借阅”声明为可为 null (Loan? loan)********。 然后，它使用 GetPopulatedLoan 方法转换借阅，并返回第一个结果****。 如果未找到匹配的借阅，FirstOrDefault 将返回 null********。 然后，该方法返回此借阅对象，如果没有具有指定 ID 的借阅，该对象可能为 null****。 此方法可确保返回的借阅完全填充所有必要的相关数据，从而全面了解借阅记录。
 
     GitHub Copilot 还可能建议以下代码（在功能上等效）：
 
@@ -854,7 +854,7 @@ JsonLoanRepository 类包括 GetLoan 和 UpdateLoan 数据访问方法********�
 
     你将看到警告。 现在可以忽略这些文件。
 
-### 在智能体模式下使用聊天视图重构 JsonPatronRepository 类
+### 在“智能体”模式下使用聊天视图重构 JsonPatronRepository 类
 
 JsonPatronRepository 类包含以下三种方法****：
 
@@ -864,7 +864,7 @@ JsonPatronRepository 类包含以下三种方法****：
 
 这三种方法均使用 foreach 循环来循环访问借阅者，并根据搜索输入或 ID 查找匹配项。
 
-你将在智能体模式下使用聊天视图重构方法，将 foreach 循环替换为 LINQ 查询，与用于 JsonData 和 JsonLoanRepository 类的操作方法相同********。
+你将在“智能体”模式下使用聊天视图重构方法，将 foreach 循环替换为 LINQ 查询，与用于 JsonData 和 JsonLoanRepository 类的操作方法相同********。
 
 请使用以下步骤完成本练习的这一部分：
 
@@ -872,7 +872,7 @@ JsonPatronRepository 类包含以下三种方法****：
 
     JsonPatronRepository 类旨在管理图书馆借阅者****。
 
-1. 请花点时间查看 JsonPatronRepository 类中包含的 三种方法****。
+1. 请花点时间查看 JsonPatronRepository 类中包含的三种方法****。
 
     SearchPatrons 方法旨在按姓名搜索借阅者****。
 
@@ -959,19 +959,19 @@ JsonPatronRepository 类包含以下三种方法****：
 
 1. 在聊天视图中，将模式更改为“智能体”****
 
-    智能体模式旨在将 GitHub Copilot 作为智能体运行。 可以使用自然语言来指定高级任务。 智能体将评估分配的任务、规划所需的工作，并将更改应用到代码库。
+    “智能体”模式旨在将 GitHub Copilot 作为智能体运行。 可以使用自然语言来指定高级任务。 智能体将评估分配的任务、规划所需的工作，并将更改应用到代码库。
 
-    智能体模式结合使用代码编辑和工具调用来完成指定任务。 处理请求时，它会监视编辑和工具的结果，并循环访问以解决出现的任何问题。 如果智能体无法解决问题，它会请你进行干预。 例如，如果智能体使用多个迭代来解决同一问题，它将暂停进程，并请你提供其他上下文来阐明请求或取消进程。
+    “智能体”模式结合使用代码编辑和工具调用来完成指定任务。 处理请求时，它会监视编辑和工具的结果，并循环访问以解决出现的任何问题。 如果智能体无法解决问题，它会要求你进行干预。 例如，如果智能体使用多个迭代来解决同一问题，它将暂停进程，并请你提供其他上下文来阐明请求或取消进程。
 
-    > **重要说明**：在智能体模式下使用聊天视图时，GitHub Copilot 可能会发出多个高级请求来完成单个任务。 高级请求可由用户发起的提示和 Copilot 代表你采取的后续操作使用。 使用的高级请求总数取决于任务的复杂性、所涉及的步骤数和所选的模型。
+    > **重要说明**：在“智能体”模式下使用聊天视图时，GitHub Copilot 可能会发出多个高级请求来完成单个任务。 高级请求可由用户发起的提示和 Copilot 代表你采取的后续操作使用。 使用的高级请求总数取决于任务的复杂性、所涉及的步骤数和所选的模型。
 
 1. 请花点时间考虑需要分配给智能体的任务。
 
     任务是重构 JsonPatronRepository 类****。 目标是将 foreach 循环替换为可与原始 foreach 代码生成相同结果的 LINQ 查询。
 
-    可以使用 JsonData 和 JsonLoanRepository 类的相关体验来帮助编写用于智能体的任务********。 LINQ 查询应使用 Where、Select和 FirstOrDefault 查找匹配的借阅者************。 LINQ 查询还应使用 OrderBy，以保留原始 foreach 代码中的排序****。
+    可以使用 JsonData 和 JsonLoanRepository 类的相关体验来帮助编写用于智能体的任务********。 LINQ 查询应使用 Where、Select 和 FirstOrDefault 查找匹配的借阅者************。 LINQ 查询还应使用 OrderBy，以保留原始 foreach 代码中的排序****。
 
-1. 要分配智能体任务，请输入以下提示：
+1. 若要分配智能体任务，请输入以下提示：
 
     ```plaintext
 
@@ -983,7 +983,7 @@ JsonPatronRepository 类包含以下三种方法****：
 
 1. 在智能体重构代码时监视智能体的进度。
 
-    请注意，智能体在多次迭代中完成任务。 每次代码编辑后均会进行评审，以检查是否存在问题。 如果智能体遇到问题，它将重构代码以解决该问题。 如果智能体无法解决问题，它会请你进行干预。
+    请注意，智能体在多次迭代中完成任务。 每次代码编辑后均会进行评审，以检查是否存在问题。 如果智能体遇到问题，它将重构代码以解决该问题。 如果智能体无法解决问题，它会要求你进行干预。
 
 1. 智能体完成后，请花点时间查看建议的更新。
 
@@ -1096,8 +1096,8 @@ JsonPatronRepository 类包含以下三种方法****：
 
 ## 总结
 
-在本练习中，你了解了如何使用 GitHub Copilot 重构代码。 你在“编辑”模式下使用了聊天视图重构 EnumHelper 类，将反射替换为静态字典****。 你还使用内联聊天和编辑模式重构 JsonData 和 JsonLoanRepository 类，将 foreach 循环替换为 LINQ 查询********。 最后，你使用智能体模式重构 JsonPatronRepository 类，将 foreach 循环替换为 LINQ 查询****。
+在本练习中，你了解了如何使用 GitHub Copilot 重构代码。 你在“编辑”模式下使用了聊天视图重构 EnumHelper 类，将反射替换为静态字典****。 你还使用内联聊天和“编辑”模式重构 JsonData 和 JsonLoanRepository 类，将 foreach 循环替换为 LINQ 查询********。 最后，你使用“智能体”模式重构 JsonPatronRepository 类，将 foreach 循环替换为 LINQ 查询****。
 
 ## 清理
 
-现已完成练习，请花点时间确保你未更改不想保留的 GitHub 帐户或 GitHub Copilot 订阅。 如果执行了任何更改，请立即还原。
+现已完成练习，请花点时间确保你未更改不想保留的 GitHub 帐户或 GitHub Copilot 订阅。 如果你进行了任何更改，请立即还原。
