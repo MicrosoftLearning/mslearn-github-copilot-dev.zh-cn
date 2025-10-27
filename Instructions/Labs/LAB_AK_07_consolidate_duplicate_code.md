@@ -12,11 +12,11 @@ lab:
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
+> **重要说明**：要完成本练习，需要提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
-实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
+实验室环境必须包括以下资源：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
 
 ### 配置实验室环境
 
@@ -56,7 +56,7 @@ lab:
 
     1. 导航到实验室环境中的下载文件夹。
 
-    1. 右键单击 GHCopilotEx7LabApps.zip，然后选择“全部解压”******。
+    1. 右键单击 GHCopilotEx7LabApps.zip，然后选择“全部解压”********。
 
     1. 选择“完成时显示解压缩的文件”，然后选择“解压缩”。
 
@@ -98,7 +98,7 @@ lab:
 
 你是一家咨询公司的软件开发人员。 客户需要你帮忙合并重复的代码逻辑。 你的目标是在保留现有功能的同时提高代码的可维护性。 公司给你分配了以下应用：
 
-- E-CommerceOrdersAndReturns:这是一个电子商务应用，用于处理客户订单和产品退货。 它包含用于验证订单和退货、计算运费、发送电子邮件通知、记录审核活动以及管理库存水平的核心业务逻辑。
+- E-CommerceOrdersAndReturns:此应用是一个电子商务应用，用于处理客户订单和产品退货。 它包含用于验证订单和退货、计算运费、发送电子邮件通知、记录审核活动以及管理库存水平的核心业务逻辑。
 
 本练习包括以下任务：
 
@@ -123,7 +123,7 @@ lab:
 
     将 OrderProcessor.cs 和 ReturnProcessor.cs 并排打开********。 这两个类分别表示处理客户订单和产品退货的核心业务逻辑。
 
-    请注意，这两个类的方法签名和处理模式相似。 这是最明显的一类重复，但整个代码库中还存在其他更不易察觉的重复。
+    请注意，这两个类的方法签名和处理模式相似。 此相似度是最明显的一类重复，但整个代码库中还存在其他更不易察觉的重复。
 
 1. 评审服务层。
 
@@ -209,7 +209,7 @@ GitHub Copilot 对话助手的“询问”模式是一种强大的工具，可�
 
 1. 请花点时间查看 GitHub Copilot 的回复。
 
-    GitHub Copilot 应识别用于处理订单确认和退货确认的重复逻辑。 这包括准备及发送电子邮件的模板化方法。 GitHub Copilot 也可以识别与帮助程序方法和控制台输出相关的重复模式。
+    GitHub Copilot 应识别用于处理订单确认和退货确认的重复逻辑。 响应包括准备及发送电子邮件的模板化方法。 GitHub Copilot 也可以识别与帮助程序方法和控制台输出相关的重复模式。
 
 1. 更新聊天上下文以指定 AuditService.cs**** 和 InventoryService.cs**** 文件。
 
@@ -235,7 +235,7 @@ GitHub Copilot 对话助手的“询问”模式是一种强大的工具，可�
     @workspace Analyze the entire ECommerceOrderAndReturn codebase and identify all forms of code duplication, including method-level, service-level, and architectural pattern duplications. Prioritize the duplications by impact and refactoring difficulty. Describe an approach for consolidating this code.
     ```
 
-    分析特定文件后，可通过要求 GitHub Copilot 将整个代码库纳入分析范围来获得更全面的视角。 范围扩大可以揭露额外的重复模式，例如多个文件或层级中相似的错误处理、记录和验证逻辑。 拥有一个提供信息并优先处理重构策略的响应，通常很有帮助。
+    分析特定文件后，可通过要求 GitHub Copilot 将整个代码库纳入分析范围来获得更全面的视角。 范围扩大可以揭露其他的重复模式，例如多个文件或层级中相似的错误处理、记录和验证逻辑。 拥有一个提供信息并优先处理重构策略的响应，通常很有帮助。
 
     > 注意****：`@workspace` 和 `#codebase` 关键字指示 GitHub Copilot 在分析上下文中包含整个代码库。 `@workspace` 关键字仅在使用 GitHub Copilot 的“询问”模式时可用。 `#codebase` 关键字可在任何模式（“询问”“编辑”或“智能体”）下使用。
 
@@ -261,13 +261,13 @@ GitHub Copilot 对话助手的“询问”模式是一种强大的工具，可�
 
     对照 GitHub Copilot 的发现与你自己观察到的情况。 确保你不仅了解重复模式有哪些，还了解这些模式存在的原因，以及如何在维护业务逻辑完整性的同时合并这些模式。
 
-GitHub Copilot 的“询问”模式特别强大，可用于识别除简单复制粘贴情况以外的不易察觉的重复。 它可以识别相似的逻辑模式、以不同方式实现的等效业务规则以及跨多个文件范围的体系结构重复。
+GitHub Copilot 的“询问”模式擅长识别超出简单复制粘贴场景的微妙重复。 它可以识别相似的逻辑模式、以不同方式实现的等效业务规则以及跨多个文件范围的体系结构重复。
 
 > 注意****：在此任务期间生成的分析用于为你在下一部分中实现的重构策略提供依据。
 
 ### 使用 GitHub Copilot 对话助手（智能体模式）合并重复的逻辑
 
-通过 GitHub Copilot 的“智能体”模式，你可以分配跨多个文件和体系结构层次的复杂多步骤重构任务。 智能体可以自主创建新文件、修改现有代码并实现全面的重构策略，同时让你知道其进度。
+通过 GitHub Copilot 的“智能体”模式，你可以分配跨多个文件和体系结构层次的适度复杂多步骤重构任务。 智能体可以自主创建新文件、修改现有代码并实现全面的重构策略，同时让你知道其进度。
 
 在此任务中，你将使用 GitHub Copilot 智能体系统地消除在上一个任务中识别出的重复代码模式，从消除最简单的重复开始，再推进到更复杂的服务层合并。
 
@@ -275,7 +275,7 @@ GitHub Copilot 的“询问”模式特别强大，可用于识别除简单复�
 
 1. 将 GitHub Copilot 的“聊天”视图切换为“智能体”模式。
 
-    使用“智能体”模式时，GitHub Copilot 可以对代码库进行自主更改。 “智能体”模式对于复杂的多步骤重构任务特别有用。
+    使用“智能体”模式时，GitHub Copilot 可以对代码库进行自主更改。 “智能体”模式擅长处理适度复杂的多步骤重构任务。
 
     若要更改模式，请找到模式选择器（通常位于聊天视图的左下角），然后选择“智能体”****。
 
@@ -309,13 +309,13 @@ GitHub Copilot 的“询问”模式特别强大，可用于识别除简单复�
 
     智能体完成分配的任务时，其进度应显示在聊天中。
 
-    若要帮助智能体处理任务，请根据需要授予继续操作或提供额外上下文的权限。 例如，如果智能体要求生成或运行应用程序的权限，请选择“继续”****
+    若要帮助智能体处理任务，请根据需要授予继续操作或提供更多上下文的权限。 例如，如果智能体要求生成或运行应用程序的权限，请选择“继续”****
 
-    在此任务期间，智能体将完成以下操作：
+    智能体在此任务中完成以下步骤：
 
     - 在 Services 文件夹中创建一个新的 ValidationService.cs 文件****
     - 将验证逻辑提取到可重用的方法中
-    - 更新这两个处理器类以使用新服务
+    - 更新这两个处理器类（以使用新服务）
     - 删除重复的专用验证方法
     - 通过成功的生成和测试运行来验证功能
 
@@ -439,4 +439,4 @@ GitHub Copilot 智能体擅长处理需要理解业务逻辑和体系结构模�
 
 ## 清理
 
-现在，你已经完成了本练习，请花点时间确保你没有对 GitHub 帐户或 GitHub Copilot 订阅作出任何你不希望保留的更改。 如果你进行了任何更改，请根据需要还原。 如果你将本地电脑用作实验室环境，则可以存档或删除为此练习创建的示例项目文件夹。
+现在，你已经完成了本练习，请花点时间确保你没有对 GitHub 帐户或 GitHub Copilot 订阅做出任何你不希望保留的更改。 如果你进行了任何更改，请根据需要还原。 如果你将本地电脑用作实验室环境，则可以存档或删除为此练习创建的示例项目文件夹。
