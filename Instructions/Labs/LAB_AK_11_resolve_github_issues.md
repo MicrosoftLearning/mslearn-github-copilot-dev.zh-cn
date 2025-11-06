@@ -16,7 +16,7 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。 在�
 
 ## 开始之前
 
-实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
+实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、GitHub CLI、具有 C# 开发工具包扩展的 Visual Studio Code，以及对已启用 GitHub Copilot 的 GitHub 帐户的访问权限。
 
 如果你将本地电脑用作本练习的实验室环境：
 
@@ -72,7 +72,9 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。 在�
 
 ### 导入 ContosoShopEasy 存储库
 
-通过 GitHub 存储库导入，你可以在自己的 GitHub 帐户中创建现有存储库的副本。 此过程会保留原始存储库的历史记录，同时让你对导入的副本拥有完全控制权。 在此任务中，你需要导入 ContosoShopEasy 项目，并创建与代码库中存在的安全漏洞相对应的 GitHub 问题。
+使用 GitHub 导入工具，你可以在自己的 GitHub 帐户中创建现有存储库的副本，从而完全控制导入的副本。 尽管 GitHub 导入工具不会迁移问题、PR 或讨论，但该存储库包含一个 GitHub Actions 工作流，可根据代码库自动创建问题。
+
+在此任务中，你需要导入 ContosoShopEasy 项目，并创建与代码库中存在的安全漏洞相对应的 GitHub 问题。
 
 使用以下步骤完成此任务：
 
@@ -80,31 +82,75 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。 在�
 
 1. 登录到 GitHub 帐户。
 
-1. 创建名为 ContosoShopEasy 的新存储库****。
+1. 打开存储库选项卡。
 
-    可通过选择 GitHub 右上角的+ 图标并选择“新建存储库”来创建新存储库********。
+    通过单击右上角的配置文件图标，并选择“存储库”****，可以打开存储库选项卡。
 
-1. 将 ContosoShopEasy 项目文件从本地实验室环境复制到新存储库。
+1. 在“存储库”选项卡上，选择“新建”按钮。****
 
-    可直接通过 GitHub Web 界面上传文件，也可克隆空存储库，并从本地计算机推送 ContosoShopEasy 文件。
+1. 在“新建存储库”部分下，选择“导入存储库”********。
 
-1. 创建以下 GitHub 问题来跟踪安全漏洞：
+    此时会显示“将项目导入到 GitHub”页。****
 
-    - SQL 注入漏洞****:产品搜索功能接受未经批准的输入，并且容易受到注入攻击。 `ProductService.cs` 中的`SearchProducts` 方法可直接将用户输入合并到模拟的 SQL 查询中，而无需进行适当的参数化。
+1. 在“将项目导入到 GitHub”页上的“源存储库详细信息”下，输入源存储库的以下 URL：****
 
-    - 弱密码哈希****：应用程序使用 MD5 哈希来存储密码，而该算法为弱加密。 `UserService.cs` 中的`GetMd5Hash` 方法可实现这种易受攻击的哈希处理方式。
+    ```plaintext
+    https://github.com/MicrosoftLearning/resolve-github-issues-lab-project
+    ```
 
-    - 敏感数据泄漏****：以纯文本形式记录完整的信用卡卡号、信用卡验证码和密码。 `PaymentService.cs` 中的`ProcessPayment` 方法和`UserService.cs` 中的注册/登录方法会泄漏敏感信息。
+1. 在“新存储库详细信息”部分的“所有者”下拉列表中，选择你的 GitHub 用户名。********
 
-    - 硬编码的管理员凭据****：管理员的用户名和密码被硬编码在`SecurityValidator.cs` 类中，这使得任何能访问源代码的人都可以获取到这些信息。
+1. 在“存储库名称”字段中，输入 ResolveGitHubIssues，然后选择“开始导入”。************
 
-    - 输入验证问题****：应用程序接受可能具有危险性的字符，却未进行适当的清理。 `SecurityValidator.cs` 中的`ValidateInput` 方法会记录警告，但仍接受恶意输入。
+    GitHub 会使用 ContosoShopEasy 项目文件在你的帐户中创建一个新存储库。
 
-    - 信息泄漏****：调试日志记录会公开敏感的系统信息和配置详细信息。 应用程序中的多个类出于调试目的会记录敏感数据。
+    > 注意****：导入过程可能需要一些时间才能完成。
 
-    - 可预测会话令牌****：会话令牌遵循基于用户名和时间戳的可预测模式。 `SecurityValidator.cs` 中的`GenerateSessionToken` 方法生成的令牌容易被猜测到。
+1. 等待导入过程完成，然后打开新存储库。
 
-    - 文件上传安全问题****：应用程序接受危险的文件类型，却未进行适当的验证。 `SecurityValidator.cs` 中的`ValidateFileUpload` 方法对恶意文件上传的防护措施不足。
+1. 转到存储库的“操作”选项卡，然后运行名为“创建 ContosoShopEasy 培训问题”的 GitHub Actions 工作流。****
+
+1. 键入“CREATE”以确认创建问题。
+
+    该工作流将在存储库中为代码库中标识的每个安全漏洞创建问题。
+
+    关键优先级问题
+
+    1. 硬编码管理员凭据****  
+        删除硬编码管理员用户名/密码。
+
+    1. 信用卡数据存储****  
+        修复 PCI DSS 合规性冲突。
+
+    高优先级问题
+
+    1. SQL 注入漏洞****  
+        保护产品搜索功能。
+
+    1. 弱密码哈希****  
+        将 MD5 替换为安全哈希。
+
+    1. 日志中的敏感数据****  
+        从调试输出中删除密码/卡片。
+
+    1. 输入验证绕过****  
+        修复用于检测但允许威胁的验证。
+
+    中等优先级问题
+
+    1. 可预测会话令牌****  
+        实施加密安全令牌。
+
+    1. 弱电子邮件验证****  
+        改进电子邮件格式验证。
+
+    1. 密码要求不足****  
+        强化密码复杂性规则。
+
+    低优先级问题
+
+    1. **信息泄露**  
+         减少详细错误消息和调试输出。
 
 ### 查看 GitHub 中的问题
 
@@ -114,27 +160,23 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 使用以下步骤完成此任务：
 
-1. 在 GitHub 中导航到 ContosoShopEasy 存储库。
+1. 导航到 GitHub 中的 ResolveGitHubIssues 存储库。
 
 1. 选择“问题”选项卡以查看所有待解决的问题****。
 
-1. 查看每个问题说明并记下以下安全漏洞类别：
+1. 查看每个问题说明，并注意工作流已创建 10 个具体安全问题，并按优先级组织：
 
-    SQL 注入漏洞****：产品搜索功能将用户输入直接整合到数据库查询中，这为恶意 SQL 注入攻击创造了可乘之机。
+    关键优先级问题****：这些问题代表了最严重的安全风险，可能导致整个系统遭到入侵或违反法规。
 
-    弱加密做法****：使用 MD5 哈希存储密码，该哈希已被证实存在加密缺陷，不适用于密码安全保护。
+    高优先级问题****：这些问题是严重的安全漏洞，可能导致允许未经授权的访问或数据泄露。
 
-    敏感数据泄漏****：记录完整的信用卡卡号、信用卡验证码、密码以及其他敏感信息时绝不应以明文形式进行存储或记录。
+    中等优先级问题****：这些问题表示可能被利用但直接影响较小的安全漏洞。
 
-    硬编码凭据****：管理员的用户名和密码被直接嵌入源代码中，这使得任何拥有存储库访问权限的人都能获取到这些信息。
+    低优先级问题****：这些问题属于安全性改进项，可减少信息泄漏并提升整体安全状况。
 
-    输入验证失败****：对用户输入的验证和清理不足，这使得潜在恶意内容得以被应用程序处理。
+1. 请注意，每个问题都包含了漏洞的详细说明、具体的代码位置、易受攻击的代码示例、安全风险说明，以及修复的验收标准。
 
-    信息泄漏****：调试日志记录，可公开敏感系统配置、内部进程和用户数据。
-
-    弱会话管理****：可预测会话令牌生成，使攻击者能够劫持用户会话。
-
-    文件上传漏洞****：对上传的文件的验证不充分，可能会允许执行恶意代码。
+1. 审查“ContosoShopEasy 安全培训 - 问题摘要”**** 问题，其中概述了所有漏洞和学习目标。
 
 1. 请注意，这些问题是在实际应用程序中发现的常见安全漏洞，并与 OWASP 安全准则保持一致。
 
@@ -146,12 +188,12 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 使用以下步骤完成此任务：
 
-1. 将 ContosoShopEasy 存储库克隆到本地开发环境。
+1. 将 ResolveGitHubIssues 存储库克隆到本地开发环境。
 
     打开终端窗口并运行以下命令，将`your-username` 替换为你的 GitHub 用户名：
 
     ```bash
-    git clone https://github.com/your-username/ContosoShopEasy.git
+    git clone https://github.com/your-username/ResolveGitHubIssues.git
     ```
 
 1. 在 Visual Studio Code 中打开克隆的存储库。
@@ -185,22 +227,24 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
     请注意，应用程序会记录敏感信息，例如密码、信用卡卡号、管理员凭据和内部系统详细信息。 此输出为需要解决的安全问题提供了明确的证据。
 
-1. 识别与每个安全漏洞相关的特定文件和方法：
+1. 花一分钟时间浏览与 GitHub 问题中定义的每个安全漏洞关联的代码：
 
-    - SQL 注入****：`ProductService.cs` -`SearchProducts` 方法
-    - 弱密码哈希****：`UserService.cs` -`GetMd5Hash` 方法
-    - 敏感数据泄漏****：`PaymentService.cs` -`ProcessPayment` 方法和`UserService.cs` - 注册/登录方法
-    - 硬编码凭据****：`SecurityValidator.cs` - 管理员凭据常量
-    - 输入验证****：`SecurityValidator.cs` -`ValidateInput` 方法
-    - 信息泄漏****：具有调试日志记录的多个类
-    - 可预测令牌****：`SecurityValidator.cs` -`GenerateSessionToken` 方法
-    - 文件上传问题****：`SecurityValidator.cs` -`ValidateFileUpload` 方法
+    - **** SQL 注入 (#1)：`ProductService.cs` -`SearchProducts` 方法（约第 35 行）
+    - **** 弱密码哈希 (#2)：`UserService.cs` -`GetMd5Hash` 方法（约第 55 行）
+    - **** 日志中的敏感数据 (#3)：多个文件 -`UserService.cs`，`PaymentService.cs`注册/登录/付款方式
+    - **** 硬编码管理员凭据 (#4)：`SecurityValidator.cs` - 管理员凭据常量（第 7-9 行）
+    - **** 信用卡数据存储 (#5)：`Models/Order.cs` - CardNumber 和 CVV 属性
+    - **** 输入验证绕过 (#6)：始终返回 true 的`SecurityValidator.cs` -`ValidateInput` 方法
+    - **** 可预测会话令牌 (#7)：`SecurityValidator.cs` -`GenerateSessionToken` 方法
+    - **** 弱电子邮件验证 (#8)：`SecurityValidator.cs` -`ValidateEmail` 方法
+    - **** 密码要求不足 (#9)：`SecurityValidator.cs` -`ValidatePasswordStrength` 方法
+    - **** 信息披露 (#10)：具有详细调试日志记录和安全审核方法的多个类
 
 ### 使用 GitHub Copilot 的询问模式分析问题
 
 GitHub Copilot 的询问模式提供智能代码分析功能，有助于识别安全漏洞、了解其潜在影响并提出修正策略。 通过系统地分析每个安全问题，你可以在实现修补程序之前全面了解这些这些问题。 此方法可确保解决方案解决根本原因，而非仅仅是表面症状。
 
-在这项任务中，你将使用 GitHub Copilot 的询问模式，对 ContosoShopEasy 应用程序中的每个安全漏洞进行系统性分析。
+在这个任务中，你将使用 GitHub Copilot 的询问模式系统地分析安全漏洞，从最关键的问题开始，并按优先级解决问题。
 
 使用以下步骤完成此任务：
 
@@ -242,52 +286,68 @@ GitHub Copilot 的询问模式提供智能代码分析功能，有助于识别�
     Show me how to implement secure password hashing using bcrypt or PBKDF2. What additional security measures should I implement for password handling?
     ```
 
-1. 分析敏感数据泄漏问题。
+1. 分析敏感数据日志记录问题（问题 #3）。
 
-    打开`PaymentService.cs` 文件并找到`ProcessPayment` 方法。 将其添加到聊天上下文并询问：
+    打开`PaymentService.cs` 和`UserService.cs` 文件，找到记录敏感信息的方法。 将相关方法添加到聊天上下文，并询问：
 
     ```text
-    What sensitive information is being logged in this payment processing method? Why is logging full credit card numbers and CVV codes a security risk, and how should payment data be handled securely?
+    What sensitive information is being logged in the payment processing and user registration methods? Why is logging passwords, credit card numbers, and CVV codes a security risk?
     ```
 
-1. 检查硬编码凭据漏洞。
+1. 检查硬编码凭据漏洞（问题 #4）。
 
-    打开`SecurityValidator.cs` 文件并找到管理员凭据常量。 将相关代码添加到聊天上下文并询问：
+    打开`SecurityValidator.cs` 文件，找到位于第 7-9 行的管理员凭据常量。 将相关代码添加到聊天上下文并询问：
 
     ```text
     What security risks are created by hardcoding admin credentials in source code? How should application credentials be managed securely in production environments?
     ```
 
-1. 分析输入验证弱点。
+1. 分析信用卡数据存储问题（问题 #5）。
 
-    聚焦于`SecurityValidator.cs` 中的`ValidateInput` 方法并询问：
+    打开`Models/Order.cs` 文件，检查 CardNumber 和 CVV 属性。 将此代码添加到聊天上下文，并询问：
 
     ```text
-    What makes this input validation method ineffective against malicious input? How can I implement proper input sanitization to prevent XSS and other injection attacks?
+    Why is storing full credit card numbers and CVV codes a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
     ```
 
-1. 查看信息泄露问题。
+1. 审查输入验证绕过问题（问题 #6）。
 
-    选择多个包含调试日志的方法（这些方法分布在不同文件中），然后询问：
+    重点关注`SecurityValidator.cs` 中的`ValidateInput` 方法，即在检测到威胁时仍始终返回 true。 询问：
 
     ```text
-    How does excessive debug logging create security vulnerabilities? What information should never be logged, and how can I implement secure logging practices?
+    What makes this input validation method ineffective? Why does it detect dangerous input but still return true, and how should proper input validation work?
     ```
 
-1. 检查可预测令牌生成。
+1. 审查可预测会话令牌生成问题（问题 #7）。
 
-    聚焦于`GenerateSessionToken` 方法并询问：
+    聚焦于`SecurityValidator.cs` 中的`GenerateSessionToken` 方法并询问：
 
     ```text
-    Why are predictable session tokens a security risk? How should secure, unpredictable session tokens be generated to prevent session hijacking attacks?
+    Why are predictable session tokens based on username and timestamp a security risk? How should secure, unpredictable session tokens be generated?
     ```
 
-1. 分析文件上传验证问题。
+1. 分析弱电子邮件验证（问题 #8）。
 
-    查看`ValidateFileUpload` 方法并询问：
+    查看`SecurityValidator.cs` 中的`ValidateEmail` 方法，即仅检查“@" and ".”字符。 询问：
 
     ```text
-    What makes this file upload validation insufficient for security? How can I implement comprehensive file upload security to prevent malicious file execution?
+    What makes this email validation insufficient? What are the security risks of weak email validation, and how should proper email validation be implemented?
+    ```
+
+1. 审查密码要求不足问题（问题 #9）。
+
+    查看`SecurityValidator.cs` 中的`ValidatePasswordStrength` 方法，即只需要 4 个字符。 询问：
+
+    ```text
+    Why are these password requirements insufficient for security? What are proper password complexity requirements, and how should password strength be validated?
+    ```
+
+1. 分析信息泄漏问题（问题 #10）。
+
+    选择`RunSecurityAudit` 方法和不同文件中的其他调试日志记录，并询问：
+
+    ```text
+    How does the security audit method and excessive debug logging create information disclosure vulnerabilities? What information should never be exposed in logs or error messages?
     ```
 
 1. 在修正阶段记录分析结果以供参考。
@@ -297,6 +357,8 @@ GitHub Copilot 的询问模式提供智能代码分析功能，有助于识别�
 ### 使用 GitHub Copilot 的智能体模式解决问题
 
 GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复杂的安全修补程序。 与提供分析和建议的询问模式不同，智能体模式可以直接修改代码来实现安全改进。 此方法特别适用于系统安全修正，在这些场景，需要一致地解决多个相关漏洞。
+
+> 注意****：为节省本实验室练习的时间，你将集中解决一组问题并在单个提交中推送更新。 这种批量处理问题的方式并非推荐的最佳做法。 Microsoft 和 GitHub 建议分别解决每个问题，并使用独立的提交，而不是进行批量处理。 分别解决问题可以提供更好的可追溯性、更简便的代码评审流程，以及在出现问题时更安全的回滚选项。 在处理下一个问题之前，应对每个修补程序进行全面测试，以确保更改不会引入回归问题。
 
 在此任务中，你将使用 GitHub Copilot 的智能体模式为 ContosoShopEasy 应用程序中的所有已识别漏洞实现全面的安全修补程序。
 
@@ -314,9 +376,22 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
     Fix the SQL injection vulnerability in the SearchProducts method. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure the method still functions correctly for legitimate searches while preventing malicious input.
     ```
 
-1. 监视智能体的进度并查看建议的更改。
+1. 监视智能体的进度。
 
-    智能体将修改代码以删除易受攻击的日志记录并实现更安全的输入处理。 查看这些更改，确保在解决安全问题的同时保持功能正常。
+    智能体将修改代码以删除易受攻击的日志记录并实现更安全的输入处理。
+
+1. 花一分钟时间查看建议的更改，然后在“聊天”视图中选择“保存”****。
+
+    始终在代码编辑器中查看 GitHub Copilot 建议的编辑内容。 确保在解决安全问题的同时保持功能正常。
+
+    在生产环境中，团队在继续处理下一个问题之前，应完成以下清单：
+
+    - 代码中已不存在该漏洞。
+    - 应用程序仍能正常运行。
+    - 已实施最佳安全做法，且未引入新的安全问题。
+    - 已成功通过自动测试（如有）。
+    - 代码更新已清晰记录。
+    - 在合并及关闭问题之前，已使用具有描述性的消息提交更改，并已通过同行评审。
 
 1. 实现安全密码哈希。
 
@@ -330,55 +405,71 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
     智能体将实现更强的密码哈希。 通过运行应用程序来测试更改，确保用户注册和登录仍然正常运行。
 
-1. 解决付款处理中的敏感数据泄露问题。
+1. 解决敏感数据日志记录问题（问题 #3）。
 
-    打开`PaymentService.cs` 文件并指示智能体：
+    关注`PaymentService.cs` 和`UserService.cs` 文件，并对智能体发出指令：
 
     ```text
-    Fix sensitive data logging in the ProcessPayment method. Remove logging of full credit card numbers, CVV codes, and other sensitive payment information. Implement secure logging that masks sensitive data while maintaining useful operational information.
+    Fix sensitive data logging throughout the application. Remove logging of passwords, full credit card numbers, CVV codes, and other sensitive information. Implement secure logging that masks sensitive data while maintaining useful operational information.
     ```
 
-1. 删除硬编码的管理员凭据。
+1. 移除硬编码管理员凭据（问题 #4）。
 
     聚焦于`SecurityValidator.cs` 文件并使用以下提示：
 
     ```text
-    Remove hardcoded admin credentials and replace them with a secure configuration approach. Implement environment variable or configuration file-based credential management while maintaining the functionality for educational demonstration purposes.
+    Remove hardcoded admin credentials from the SecurityValidator class. Replace the hardcoded ADMIN_USERNAME and ADMIN_PASSWORD constants with a secure configuration approach using environment variables while maintaining the functionality for educational demonstration purposes.
     ```
 
-1. 实现正确的输入验证。
+1. 修复信用卡数据存储冲突（问题 #5）。
+
+    关注`Models/Order.cs` 文件，并对智能体发出指令：
+
+    ```text
+    Fix PCI DSS compliance violations in the Order model. Remove or modify the CardNumber and CVV properties to avoid storing full credit card numbers and CVV codes. Implement secure payment data handling that stores only last 4 digits for display purposes.
+    ```
+
+1. 修复输入验证绕过问题（问题 #6）。
 
     指示智能体修复输入验证漏洞：
 
     ```text
-    Strengthen the ValidateInput method to properly sanitize user input and prevent XSS attacks. Implement comprehensive input validation that rejects malicious content while allowing legitimate user input. Ensure the method returns false for truly dangerous input.
+    Fix the ValidateInput method in SecurityValidator that currently always returns true despite detecting threats. Implement proper input validation that actually rejects dangerous content when SQL injection, XSS, or other malicious patterns are detected.
     ```
 
-1. 通过日志记录减少信息泄露。
-
-    解决跨多个文件的调试日志记录问题：
-
-    ```text
-    Review all console logging throughout the application and remove or mask sensitive information. Implement secure logging practices that provide useful debugging information without exposing passwords, credit card data, or system internals.
-    ```
-
-1. 实现安全会话令牌生成。
+1. 实现安全会话令牌生成（问题 #7）。
 
     聚焦于会话令牌漏洞：
 
     ```text
-    Replace the predictable session token generation with a cryptographically secure random token generator. Ensure tokens are unpredictable and sufficiently long to prevent brute force attacks.
+    Replace the predictable session token generation in GenerateSessionToken method with a cryptographically secure random token generator. Remove the username and timestamp-based pattern and implement unpredictable tokens with sufficient entropy.
     ```
 
-1. 加强文件上传验证。
+1. 加强电子邮件验证（问题 #8）。
 
-    解决文件上传安全问题：
+    解决弱电子邮件验证问题：
 
     ```text
-    Implement comprehensive file upload validation that checks file types, sizes, and content. Reject dangerous file types and implement proper security controls to prevent malicious file uploads.
+    Fix the ValidateEmail method that only checks for '@' and '.' characters. Implement proper email format validation using regex or built-in validation methods. Remove email logging and add appropriate length restrictions.
     ```
 
-1. 在每次重大更改后测试应用程序。
+1. 改进密码要求（问题 #9）。
+
+    关注密码强度验证：
+
+    ```text
+    Strengthen the ValidatePasswordStrength method that currently only requires 4 characters. Implement proper password complexity requirements including minimum 8 characters, uppercase, lowercase, numbers, and special characters. Remove password logging.
+    ```
+
+1. 减少信息泄漏（问题 #10）。
+
+    解决调试日志记录和安全审核问题：
+
+    ```text
+    Fix information disclosure vulnerabilities by removing or restricting the RunSecurityAudit method and reducing verbose error messages throughout the application. Remove sensitive system information from logs while maintaining useful debugging capabilities.
+    ```
+
+1. 测试应用程序。
 
     在智能体对每个漏洞类别实现修补程序后，运行应用程序以确保功能得以保留：
 
@@ -419,41 +510,49 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
     将输出结果与原始应用程序运行中的笔记进行比较。 应会看到记录的敏感信息显著减少。
 
-1. 通过检查产品搜索功能来测试 SQL 注入修复。
+1. 测试 SQL 注入修复（问题 #1）。
 
     验证`SearchProducts` 方法是否不再记录易受攻击的 SQL 查询，且搜索功能对于合法搜索词是否仍能正常工作。
 
-1. 验证密码安全改进措施。
+1. 验证密码安全改进（问题 #2）。
 
     检查用户注册和登录进程是否不再记录纯文本密码，以及是否实现了更强大的密码哈希。 应用程序仍应正确对用户进行身份验证。
 
-1. 确认付款处理安全性改进。
+1. 确认敏感数据日志记录修复（问题 #3）。
 
-    确保付款处理不再记录完整的信用卡卡号或信用卡验证码，同时保持成功处理付款的能力。
+    确保在成功处理交易的同时，付款流程和用户操作不再记录密码、完整的信用卡号或 CVV 码。
 
-1. 验证管理员凭据安全性。
+1. 验证硬编码凭据删除（问题 #4）。
 
-    验证硬编码管理员凭据是否不再显示在日志或安全审核中，而管理员功能仍可通过安全方式访问。
+    验证硬编码管理员凭据是否不再显示在日志或安全审核中，而管理员功能仍可通过安全配置访问。
 
-1. 测试输入验证改进措施。
+1. 测试信用卡存储合规性（问题 #5）。
 
-    确认改进的输入验证可正确处理合法和潜在的恶意输入，而不会破坏正常的用户交互。
+    确认订单模型不再存储完整的信用卡号或 CVV 码，并且仅保留遮蔽付款信息用于显示目的。
 
-1. 检查信息泄露修补程序。
+1. 验证输入验证修复（问题 #6）。
 
-    检查控制台输出，确保敏感的系统信息、配置详细信息和用户数据不再通过调试日志公开。
+    确认改进后的 ValidateInput 方法现在能够正确拒绝危险输入，而不是仅记录警告并返回 true。
 
-1. 验证会话令牌安全性。
+1. 检查会话令牌安全性（问题 #7）。
 
-    如果应用程序在运行过程中生成会话令牌，需确认这些令牌显示为随机性和不可预测性，而非采用以前基于模式的生成方式。
+    如果应用程序在运行过程中生成会话令牌，需确认这些令牌看起来是随机且不可预测的，而不是沿用之前的用户名-时间戳模式。
 
-1. 验证文件上传安全性改进。
+1. 测试电子邮件验证改进（问题 #8）。
 
-    测试文件上传验证改进措施，确保危险文件类型被正确拦截，同时合法文件能被正常接收。
+    验证电子邮件验证现在是否正确地拒绝无效电子邮件格式，而不是接受包含“@" and ".”字符的任何字符串。
 
-1. 将安全审核输出与原始版本进行比较。
+1. 验证密码要求增强功能（问题 #9）。
 
-    运行安全审核功能，并将结果与初始观察结果进行比较。 审核应显示改进后的安全状况，同时保持教育价值。
+    测试密码验证现在是否强制实施适当的复杂性要求，而不是接受任意 4 个字符的字符串。
+
+1. 审查信息泄漏修复（问题 #10）。
+
+    检查是否删除或限制了安全审核方法，以及详细错误消息是否不再公开敏感的系统信息。
+
+1. 将整体安全状况与原始版本进行比较。
+
+    运行应用程序并将控制台输出与初始观测结果进行比较。 应用程序应在保持所有核心功能的同时，表现出显著提升的安全性。
 
 1. 记录任何剩余的问题或改进方面。
 
@@ -484,84 +583,29 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
     git add .
     ```
 
-1. 使用引用 GitHub 问题的描述性消息提交更改。
+1. 提交所有安全修补程序，其中包含引用所有 GitHub 问题的综合消息。
 
-    使用清晰描述安全修补程序并引用问题编号的提交消息：
-
-    ```bash
-    git commit -m "Fix SQL injection vulnerability in ProductService SearchProducts method
-
-    - Remove vulnerable SQL query logging
-    - Implement proper input sanitization
-    - Maintain search functionality while preventing injection attacks
-
-    Fixes #1"
-    ```
-
-1. 针对每个主要的安全修补程序类别分别进行额外提交。
-
-    提交密码哈希改进措施：
+    创建一个提交，以解决培训练习中发现的所有安全漏洞：
 
     ```bash
-    git commit -m "Replace MD5 with secure password hashing
+    git commit -m "Fix all ContosoShopEasy security vulnerabilities
 
-    - Implement bcrypt/PBKDF2 for password storage
-    - Add proper salt generation
-    - Maintain authentication compatibility
+    Security improvements implemented:
+    - Fix SQL injection in ProductService SearchProducts method
+    - Replace MD5 with secure password hashing (bcrypt/PBKDF2)
+    - Remove sensitive data from debug logging (passwords, card numbers, CVV)
+    - Remove hardcoded admin credentials, use environment variables
+    - Fix PCI DSS violations in Order model (remove full card storage)
+    - Fix input validation bypass to properly reject dangerous input
+    - Implement secure session token generation with crypto randomness
+    - Strengthen email validation with proper format checking
+    - Improve password requirements (8+ chars, complexity rules)
+    - Reduce information disclosure from security audit and debug logs
 
-    Fixes #2"
+    Fixes #1 #2 #3 #4 #5 #6 #7 #8 #9 #10"
     ```
 
-1. 继续针对剩余的安全修补程序进行提交：
-
-    ```bash
-    git commit -m "Remove sensitive data from payment processing logs
-
-    - Mask credit card numbers in logging
-    - Remove CVV code exposure
-    - Maintain operational logging capabilities
-
-    Fixes #3"
-
-    git commit -m "Remove hardcoded admin credentials
-
-    - Implement secure credential management
-    - Use environment variables for sensitive config
-    - Maintain admin functionality for demo purposes
-
-    Fixes #4"
-
-    git commit -m "Strengthen input validation and prevent XSS
-
-    - Implement comprehensive input sanitization
-    - Reject malicious content properly
-    - Maintain user experience for legitimate input
-
-    Fixes #5"
-
-    git commit -m "Reduce information disclosure in debug logging
-
-    - Remove sensitive data from console output
-    - Implement secure logging practices
-    - Maintain useful debugging information
-
-    Fixes #6"
-
-    git commit -m "Implement secure session token generation
-
-    - Replace predictable tokens with cryptographically secure random generation
-    - Increase token entropy to prevent brute force attacks
-
-    Fixes #7"
-
-    git commit -m "Enhance file upload security validation
-
-    - Implement comprehensive file type checking
-    - Add file size and content validation
-    - Reject dangerous file types effectively
-
-    Fixes #8"
-    ```
+    > 注意****：在生产环境中，每个问题通常应通过单独的提交进行解决，并配合独立测试和代码评审。 这里使用单一提交方法只是为了在培训练习中节省时间。
 
 1. 将更改推送到 GitHub 存储库。
 
@@ -576,4 +620,3 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 1. 查看提交历史记录，确保正确记录所有安全修补程序。
 
     验证提交消息是否清楚地描述了安全改进措施，以及是否为将来的参考提供了完善的审核线索。
-
