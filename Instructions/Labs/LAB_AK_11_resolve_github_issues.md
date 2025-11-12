@@ -70,8 +70,6 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。
 1. 测试并验证重构的代码。
 1. 提交更改并关闭问题。
 
-> 注意****：为了节省时间，在本次培训练习中，你将解决一组问题并在一次提交中推送更新。 批量处理问题并不是推荐的最佳做法。 Microsoft 和 GitHub 建议使用独立的提交分别解决每个问题。 分别解决问题可以提供更好的可追溯性、更简便的代码评审流程，以及在出现问题时更安全的回滚选项。
-
 ### 导入 ContosoShopEasy 存储库
 
 使用 GitHub 导入工具，你可以在自己的 GitHub 帐户中创建现有存储库的副本，从而完全控制导入的副本。 尽管 GitHub 导入工具不会迁移问题、拉取请求或讨论，但它会导入 GitHub Actions 工作流。 你导入的存储库包含一个 GitHub Actions 工作流，用于创建与代码库关联的问题。
@@ -110,7 +108,7 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。
 
 1. 打开存储库中的“操作”选项卡。
 
-1. 在左侧的“所有工作流”下，选择“创建 ContosoShopEasy 训练问题”工作流，然后选择“运行工作流”。************
+1. 在页面左侧的“所有工作流”下，选择“创建 ContosoShopEasy 训练问题”工作流，然后选择“运行工作流”。************
 
 1. 在显示的工作流对话框中，键入 CREATE，然后选择“运行工作流”。********
 
@@ -134,11 +132,15 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 1. 选择存储库的“问题”选项卡，然后花一分钟时间查看“问题”页。****
 
-    应会看到有 10 个问题列出。 请注意，这些问题被定义为 bug，并且已分配有优先级。
+    应该会看到列出了 10 个待解决问题。 请注意以下内容：
+
+    - 所有问题都标记为 bug。
+    - 所有问题都具有优先级。
+    - 这些问题都没有分配给任何人。
 
 1. 若要仅显示严重问题，请选择“标签”下拉列表，然后选择“严重”标签。********
 
-    问题列表会筛选，仅显示严重问题。
+    问题列表应更新为仅显示严重问题。
 
     - 🔐 删除硬编码的管理员凭据****  
 
@@ -146,7 +148,7 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 1. 若要仅显示高优先级问题，请选择“标签”下拉列表，取消选择“严重”，然后选择“高优先级”标签。************
 
-    问题列表会筛选，仅显示高优先级问题。
+    问题列表应更新为仅显示高优先级问题。
 
     - 🔐 修复输入验证安全性绕过****  
 
@@ -168,17 +170,21 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 1. 导航回“问题”选项卡并清除筛选器。
 
-1. 选择所有问题，然后使用“分配”下拉列表将问题分配给你自己。****
+1. 选择以下严重问题和高优先级问题，然后使用“分配”下拉列表将其分配给你自己。****
 
-    将问题分配给自己有助于在修正过程中跟踪进度。
+    - 🔐 修复信用卡数据存储冲突****  
+
+    - 🔐 修复产品搜索中的 SQL 注入漏洞****  
+
+    通常最好先处理优先级较高的问题。 将问题分配给你自己有助于在完成修正过程时跟踪进度。
 
 ### 在本地克隆存储库并查看代码库
 
 ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结构，在模型、服务、数据访问和安全组件之间实现了清晰的分离。
 
-在尝试解决安全问题之前，花时间了解现有代码库的基本结构、行为和功能至关重要。
+花时间了解现有代码库的基本结构、行为和功能是解决安全问题的重要第一步。
 
-在此任务中，你将创建存储库的本地克隆，检查 Visual Studio Code 中的项目结构，查看应用程序的控制台输出，并查找安全漏洞。
+在此任务中，你将创建存储库的本地克隆，检查 Visual Studio Code 中的项目结构，查看应用程序的控制台输出，并识别代码库中的安全漏洞。
 
 使用以下步骤完成此任务：
 
@@ -206,13 +212,13 @@ ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结�
 
     ContosoShopEasy 应用程序采用了具有以下组件的分层体系结构：
 
-    - Models/****：包含用于 Category.cs、Order.cs、Product.cs 和 User.cs 的数据模型。****************
-
-    - Services/****：包含 OrderService.cs、PaymentService.cs、ProductService.cs 和 UserService.cs 的业务逻辑。****************
-
     - Data/****：包含 OrderRepository.cs、ProductRepository.cs 和 UserRepository.cs 的数据存储库。************
 
+    - Models/****：包含用于 Category.cs、Order.cs、Product.cs 和 User.cs 的数据模型。****************
+
     - Security/****：包含 SecurityValidator.cs 的安全验证逻辑****
+
+    - Services/****：包含 OrderService.cs、PaymentService.cs、ProductService.cs 和 UserService.cs 的业务逻辑。****************
 
     - Program.cs****：包含依赖项注入设置的主应用程序入口点
 
@@ -232,17 +238,21 @@ ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结�
 
 1. 花点时间查看控制台输出。
 
-    请注意，应用程序会记录敏感信息，例如密码、信用卡卡号、管理员凭据和内部系统详细信息。 此输出为需要解决的安全问题提供了明确的证据。
+    ContosoShopEasy 应用程序使用刻意过度的日志记录，以此作为教学工具。 除了暴露代码库中的安全问题之外，某些日志实际上也会导致问题。 包括会导致安全问题的日志可演示在某些生产系统中发现的实际过度日志记录问题。 ContosoShopEasy 应用程序中的日志记录用于帮助开发人员区分两种类型的问题：
 
-    > 注意****：此应用程序的代码注释、逻辑和日志记录旨在帮助暴露安全漏洞。 尽管实施是人为设计的，但注释和输出日志突出显示了实际应用程序中常见的安全问题。
+    - 由日志记录导致的问题：ContosoShopEasy 应用程序中大约 40% 的漏洞是由过度日志记录引起的。 例如，密码泄露、信用卡号泄露、会话令牌暴露和配置信息泄露。
 
-1. 要开始审查过程并识别代码库中的安全漏洞，请展开 Models 文件夹，然后打开 Order.cs 文件。********
+    - 与日志记录无关的问题：ContosoShopEasy 应用程序中大约 60% 的漏洞与日志记录无关。 例如，SQL 注入、弱密码哈希、硬编码凭据、可预测令牌、输入验证绕过、信用卡存储和弱电子邮件验证。 尽管日志记录不会导致这些漏洞，但日志记录确实有助于在训练环境中暴露这些问题。
+
+1. 若要开始审查代码库中的安全漏洞，请展开 Models 文件夹，然后打开 Order.cs 文件。********
 
 1. 向下滚动，找到 PaymentInfo 类。****
 
-    注意关于 CardNumber 和 CVV 属性的注释。 这段代码与“修复信用卡数据存储冲突”问题相关。
+    注意关于 CardNumber 和 CVV 属性的注释。 此代码与分配给你自己的“修复信用卡数据存储违规”问题相关。****
 
 1. 展开 Security 文件夹，然后打开 SecurityValidator.cs 文件。********
+
+    请注意，ContosoShopEasy 应用程序使用代码注释、逻辑和日志记录来暴露安全问题。 尽管实施是人为设计的，但此方法有助于突出显示实际应用程序中常见的漏洞。
 
     > 注意****：SecurityValidator.cs 类旨在集中 ContosoShopEasy 应用程序与安全相关的逻辑，以便更轻松地查找、管理和解决安全问题。 在实际应用程序中，可以使用 SecurityValidator 等类来强制实施安全最佳做法和输入验证。 但是，ContosoShopEasy 中的具体实施故意采用不安全的设计，并人为暴露漏洞。
 
@@ -256,7 +266,7 @@ ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结�
 
     - 定位到 ValidatePasswordStrength 方法并查看描述安全漏洞的注释。 这段代码与“加强密码安全要求”问题相关。
 
-    - 找到 ValidateCreditCard 方法并查看描述安全漏洞的注释。 这段代码与“修复信用卡数据存储冲突”问题相关。
+    - 找到 ValidateCreditCard 方法并查看描述安全漏洞的注释。 此代码与分配给你自己的“修复信用卡数据存储违规”问题相关。****
 
     - 定位到 GenerateSessionToken 方法并查看描述安全漏洞的注释。 这段代码与“修复可预测会话令牌生成”问题相关。
 
@@ -276,53 +286,87 @@ ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结�
 
 1. 打开 PaymentService.cs 文件。****
 
-1. 花点时间查看描述安全漏洞的注释。
+1. 花点时间查看付款和验证方法中的注释。
 
-    此代码中的安全漏洞与“从调试日志记录中移除敏感数据”问题相关。
+    此代码中的安全漏洞与分配给你自己的“修复信用卡数据存储违规”问题相关。****
+
+    PaymentService 类还与其他问题相关。 例如，“从调试日志记录中移除敏感数据”和“减少错误消息中的信息泄漏（控制台输出）”问题。
+
+    请注意，PaymentService 类使用 OrderRepository 来保留与付款相关的订单数据。 如果 OrderRepository 类无法正确处理敏感数据，则可能会导致 OrderRepository 类中的数据泄露漏洞。
 
 1. 打开 ProductService.cs 文件。****
 
 1. 花点时间查看 SearchProducts 方法。
 
-    此代码中的安全漏洞与“修复产品搜索中的 SQL 注入漏洞”问题相关。
+    此代码中的安全漏洞与分配给你自己的“修复产品搜索中的 SQL 注入漏洞”问题相关。****
+
+    请注意，ProductService 中的 SearchProducts 方法调用 ProductRepository 中的 SearchProducts 方法。 你可能需要分析存储库方法，以确定它是否也需要安全改进。
+
+1. 列出与分配给你的问题相关的代码文件。
+
+    分配给你自己的问题包括：
+
+    - 🔐 修复信用卡数据存储冲突****
+    - 🔐 修复产品搜索中的 SQL 注入漏洞****
+
+    与“修复信用卡数据存储违规”问题相关的代码文件包括：
+
+    - Models/Orders.cs/PaymentInfo 类
+    - Security/SecurityValidator.cs/ValidateCreditCard 方法
+    - Data/OrderRepository.cs
+
+    与“修复产品搜索中的 SQL 注入漏洞”问题相关的代码文件包括：
+
+    - Services/ProductService.cs/SearchProducts 方法
+    - Data/ProductRepository.cs/SearchProducts 方法
 
 ### 使用 GitHub Copilot 的询问模式分析问题
 
 GitHub 问题通常包含复杂的问题，这些问题需要在实施修复之前进行仔细分析。 了解根本原因、潜在影响和最佳修正策略对于有效解决问题至关重要。
 
-可以使用以下 Visual Studio Code 扩展来协助分析和解决问题：
+Visual Studio Code 的以下 GitHub 扩展可帮助你分析 GitHub 问题：
 
 - GitHub Copilot 对话助手：**** GitHub Copilot 的询问模式提供智能代码分析功能，有助于识别安全漏洞、了解其潜在影响并提出修正策略。
 
 - GitHub 拉取请求：**** GitHub 拉取请求扩展将 GitHub 问题直接集成到 Visual Studio Code 中，让你无需离开开发环境即可管理问题并与之交互。
 
-通过系统地分析每个安全问题，你可以在实现修补程序之前全面了解这些这些问题。 此方法可确保解决方案解决根本原因，而非仅仅是表面症状。
+通过系统地分析安全问题，可以在实现修补程序之前全面了解这些问题。 此方法可确保解决方案解决根本原因，而非仅仅是表面症状。
 
-在此任务中，你将使用 GitHub Copilot 的询问模式，对安全漏洞进行系统性分析。
+在此任务中，你将使用 GitHub Copilot 的“询问”模式分析分配给你的 GitHub 问题。
 
 使用以下步骤完成此任务：
 
-1. 在 Visual Studio Code 中打开“扩展”视图。
+1. 确保 Visual Studio Code 中安装了 GitHub Copilot 对话助手和 GitHub 拉取请求扩展。
 
-    若要打开“扩展”视图，请从 Visual Studio Code 窗口左侧的活动栏中选择“扩展”图标。****
+    在 Visual Studio Code 中打开“扩展”视图并查看已安装的扩展。 如果缺少任一扩展，请先安装再继续操作。
 
-1. 在“扩展”视图中，搜索“GitHub 拉取请求”，然后安装扩展。
+    例如，可以使用以下步骤安装 GitHub 拉取请求扩展：
 
-    此扩展允许查看和管理 Visual Studio Code 中的 GitHub 拉取请求和问题。
+    1. 在 Visual Studio Code 中打开“扩展”视图。
 
-    安装完成后，可能需要重新加载 Visual Studio Code 才能使更改生效。 GitHub 图标应该会添加到 Visual Studio Code 的活动栏中。****
+    1. 在“扩展”视图中，搜索“GitHub 拉取请求”。****
+
+    1. 从搜索结果中选择“GitHub 拉取请求”，然后安装该扩展。****
+
+        安装完成后，可能需要重新加载 Visual Studio Code 才能使更改生效。 GitHub 图标应该会添加到 Visual Studio Code 的活动栏中。****
 
 1. 若要打开“GitHub 拉取请求”视图，请从活动栏中选择“GitHub”图标。****
 
     如果系统提示，请登录到 GitHub 帐户，将 Visual Studio Code 连接到 GitHub 存储库。
 
-1. 请注意“GitHub”视图中的“拉取请求”和“问题”部分。********
+1. 请注意，GitHub 视图包括两个部分：“拉取请求”和“问题”。********
 
-    通过“问题”部分，可直接在 Visual Studio Code 中查看和管理 GitHub 存储库中的问题。****
+    通过“问题”部分，可直接在 Visual Studio Code 中查看和管理 GitHub 存储库中的问题。**** 通过“拉取请求”部分，可以管理拉取请求。****
 
-1. 花点时间查看“问题”部分下列出的问题。****
+1. 折叠“拉取请求”部分。****
 
-    应会看到之前在 GitHub Web 界面中查看过的相同问题。
+1. 花点时间查看“问题”部分。****
+
+    请注意，分配给你自己的问题列在“我的问题”部分下（未定义里程碑）。 如果展开“最近的问题”部分，可以看到已添加到存储库的所有问题。****
+
+1. 在“我的问题”部分下，选择“修复产品搜索中的 SQL 注入漏洞”。****
+
+    “GitHub 拉取请求”扩展将在新的编辑器选项卡中打开问题详细信息。可以在此选项卡中查看问题描述、注释及任何相关信息。可以使用问题详细信息来帮助构建在“聊天”视图中提交到 GitHub Copilot 的提示。
 
 1. 打开 GitHub Copilot 对话助手视图，并确保选中“询问”模式。****
 
@@ -332,9 +376,15 @@ GitHub 问题通常包含复杂的问题，这些问题需要在实施修复之�
 
 1. 确保从干净的聊天会话开始。
 
-    聊天会话有助于整理你与 GitHub Copilot 的交互。 每个会话都维护自己的上下文，使你能够专注于特定任务或问题。 会话中的对话历史记录提供连续性，使 GitHub Copilot 能够基于以前的交互构建，以获取更准确且相关的响应。 此聊天对话将侧重于分析和解决 ContosoShopEasy 应用程序中的安全漏洞。 使用 GitHub Copilot 的“询问”模式完成对 GitHub 问题的分析后，可以在同一对话中使用 GitHub Copilot 的“智能体”模式来协助实施代码更改。 GitHub Copilot 可以使用“询问”模式下的详细分析来指导“智能体”模式下的代码生成，从而确保修复与已识别的漏洞和建议的修正策略保持一致。
+    聊天会话有助于整理你与 GitHub Copilot 的交互。 每个会话都维护自己的上下文，使你能够专注于特定任务或问题。 会话中的对话历史记录提供连续性，使 GitHub Copilot 能够基于以前的交互构建，以获取更准确且相关的响应。 此聊天对话将侧重于分析和解决 ContosoShopEasy 应用程序中分配给你的两个安全漏洞。 使用 GitHub Copilot 的“询问”模式完成对 GitHub 问题的分析后，可以在同一对话中使用 GitHub Copilot 的“智能体”模式来协助实施代码更改。 GitHub Copilot 可以使用“询问”模式下的详细分析来指导“智能体”模式下的代码生成，从而确保修复与已识别的漏洞和建议的修正策略保持一致。
 
-    如果需要，可以通过选择“新建聊天”按钮（“聊天”面板顶部的+ 图标）来启动新的聊天会话。********
+    如果需要，可以通过选择“新建聊天”按钮（“聊天”面板顶部的 + 图标）来启动新的聊天会话。********
+
+#### 分析 SQL 注入漏洞
+
+SQL 注入漏洞存在于 ProductService.cs 文件中，并可能存在于 ProductRepository.cs 文件中。 你将分析这两个文件，了解该漏洞的完整范围。
+
+使用以下步骤分析 SQL 注入漏洞：
 
 1. 打开 ProductService.cs 文件，然后定位到 SearchProducts 方法。********
 
@@ -342,245 +392,177 @@ GitHub 问题通常包含复杂的问题，这些问题需要在实施修复之�
 
     在编辑器中选择代码有助于聚焦于聊天上下文。 GitHub Copilot 会使用所选的代码提供相关分析和建议。
 
-    SearchProducts 方法与“修复产品搜索中的 SQL 注入漏洞”问题相关联。****
-
 1. 要求 GitHub Copilot 分析代码是否存在 SQL 注入漏洞。
 
     例如，你可以提交以下提示：
 
     ```text
-    Analyze the SearchProducts method for security vulnerabilities. What makes this code susceptible to SQL injection attacks, and what are the potential consequences if an attacker exploits this vulnerability?
+    Analyze the SearchProducts method for SQL injection vulnerabilities. Consider the following issue description: "The product search functionality is vulnerable to SQL injection attacks. User input is directly concatenated into SQL queries without proper parameterization or sanitization." Explain the impact of directly concatenating user input into SQL queries without proper parameterization or sanitization. What are the potential consequences if an attacker exploits this vulnerability?
     ```
 
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
+1. 查看 GitHub Copilot 的分析。
+
+    GitHub Copilot 应该会识别出该方法直接使用用户输入来构造 SQL 查询，而没有进行适当的清理。 模拟的 SQL 查询演示了如何将用户输入直接连接到查询字符串中，从而允许攻击者操控数据库查询。
+
+1. 请求具体的修正指导。
 
     例如，在查看初始分析后，你可以提交以下提示：
 
     ```text
-    How can I modify this method to prevent SQL injection attacks? What secure coding practices should I implement to safely handle user input in database queries?
+    How can I modify this method to prevent SQL injection attacks? What secure coding practices should I implement to safely handle user input in database queries? Where should user input be validated and sanitized? What techniques can I use to construct SQL queries safely?
     ```
 
 1. 花点时间查看 GitHub Copilot 的修正建议。
 
     应该会看到有关使用参数化查询或 ORM 方法的建议，这些方法有助于管理 SQL 注入风险。 还可能会看到有关输入验证和清理技术的建议。 GitHub Copilot 通常会提供演示如何实施建议的代码片段。
 
-1. 打开 UserService.cs 文件。****
+1. 打开 Data 文件夹中的 ProductRepository.cs 文件，然后找到 SearchProducts 方法。************
 
-1. 要求 GitHub Copilot 查看 UserService.cs 文件，识别安全漏洞，然后列出相关的 GitHub 问题。
+    在代码评审期间，你注意到 ProductRepository 中的 SearchProducts 方法是由 ProductService 中的 SearchProducts 方法调用的。 你可以分析存储库方法，以确定它是否也需要安全改进。
 
-    例如，你可以提交以下提示：
-
-    ```text
-    Review the UserService.cs file and identify the security vulnerabilities that are present in the code. Create a list the corresponding GitHub issues. Indicate the methods associated with each issue.
-    ```
-
-1. 请花点时间查看 GitHub Copilot 的回复。
-
-1. 在代码编辑器中，找到 GetMd5Hash 方法。****
-
-1. 在代码编辑器中，选择整个 GetMd5Hash 方法。****
-
-    GetMd5Hash 方法与“将 MD5 密码哈希替换为安全替代项”问题相关联。****
-
-1. 要求 GitHub Copilot 分析弱密码哈希漏洞。
+1. 在代码编辑器中，选择整个 SearchProducts 方法，然后要求 GitHub Copilot 分析 SQL 注入漏洞的代码。****
 
     例如，你可以提交以下提示：
 
     ```text
-    Why is MD5 hashing unsuitable for password storage? What are the security risks of using MD5 for passwords, and what stronger alternatives should I use instead?
+    Analyze the SearchProducts method in ProductRepository. Does this method properly handle the search term to prevent SQL injection, or are there vulnerabilities here as well? How does this method relate to the vulnerability in ProductService?
     ```
 
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
+1. 查看 GitHub Copilot 对存储库方法的分析。
 
-    例如，在查看初始分析后，你可以提交以下提示：
+    GitHub Copilot 应注意，虽然存储库方法使用安全字符串操作（ToLower 和 Contains），但主要漏洞位于 ProductService 层中，其中模拟的 SQL 查询是使用用户输入构造的。 存储库实施本身相对安全，但服务层通过不正确的 SQL 查询构造暴露了漏洞。
 
-    ```text
-    Show me how to implement secure password hashing using bcrypt or PBKDF2. What additional security measures should I implement for password handling?
-    ```
+1. 关闭 ProductRepository.cs 文件。
 
-1. 花点时间查看 GitHub Copilot 的修正建议。
-
-    GitHub Copilot 应该会提供“PBKDF2”和“bcrypt”的比较。 还应该提供代码片段，演示如何使用这些算法实现安全密码哈希，以及用于密码处理的其他安全措施列表。
-
-1. 在 UserService.cs 文件中，定位到 RegisterUser 和 LoginUser 方法。************
-
-1. 在代码编辑器中，选择这两种方法。
-
-    RegisterUser 和 LoginUser 方法与“从调试日志记录中移除敏感数据”问题相关联。********
-
-1. 要求 GitHub Copilot 分析敏感数据日志记录漏洞。
+1. 要求 GitHub Copilot 为 SQL 注入漏洞提出全面的修正策略，其中包括输入验证和清理技术。
 
     例如，你可以提交以下提示：
 
     ```text
-    What sensitive information is being logged in the user registration and login methods? Why is logging passwords and user data a security risk?
+    #codebase I need to resolve SQL injection vulnerabilities associated with the SearchProducts method in the ProductService.cs file. Notice that user input is directly concatenated into SQL queries without proper parameterization or sanitization. The updated codebase should use parameterized queries or prepared statements, implement proper input validation and sanitization, remove debug logging of SQL queries, and add input length restrictions. My acceptance criteria includes: User input is properly parameterized; No raw SQL construction with user input; Input validation prevents malicious characters; Debug logging removed or sanitized. Review the codebase and identify the code files that must be updated to address the SQL injection vulnerability. Based on your code review and the current Chat conversation, suggest a phased approach to required file updates.
     ```
 
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
+1. 在修正阶段记录分析结果以供参考。
 
-    例如，在查看初始分析后，你可以提交以下提示：
+    记录 GitHub Copilot 针对这两个漏洞类别的建议。 本文档将指导你在下一个任务中实现安全修补程序。
 
-    ```text
-    How can I modify these methods to prevent sensitive data logging? What secure logging practices should I implement to protect user information?
-    ```
+#### 分析信用卡数据存储违规
 
-1. 花点时间查看 GitHub Copilot 的修正建议。
+信用卡数据存储漏洞存在于多个文件中：Order.cs 模型、PaymentService.cs 服务、SecurityValidator.cs 验证程序以及 OrderRepository.cs 数据层。 你将分析这些文件，了解该漏洞的完整范围。
 
-1. 打开 PaymentService.cs 文件，然后定位到 ProcessPayment 方法。********
-
-1. 在代码编辑器中，选择整个 ProcessPayment 方法。****
-
-    ProcessPayment 方法与“从调试日志记录中移除敏感数据”问题相关联。****
-
-1. 要求 GitHub Copilot 分析敏感付款数据的日志记录。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    What sensitive payment information is being logged in this method? Why is logging credit card numbers and CVV codes a security risk?
-    ```
-
-1. 打开 SecurityValidator.cs 文件，然后在文件顶部附近找到管理员凭据常量。****
-
-1. 在代码编辑器中，选择硬编码的管理员凭据常量。
-
-1. 要求 GitHub Copilot 分析硬编码的凭据漏洞。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    What security risks are created by hardcoding admin credentials in source code? How should application credentials be managed securely in production environments?
-    ```
-
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
-
-    例如，在查看初始分析后，你可以提交以下提示：
-
-    ```text
-    What are best practices for managing application credentials securely? How can I implement secure credential management in this application?
-    ```
-
-1. 花点时间查看 GitHub Copilot 的修正建议。
-
-1. 在 SecurityValidator.cs 文件中，定位到 ValidateInput 方法。********
-
-1. 在代码编辑器中，选择整个 ValidateInput 方法。****
-
-1. 要求 GitHub Copilot 分析输入验证绕过漏洞。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    What makes this input validation method ineffective? Why does it detect dangerous input but still return true, and how should proper input validation work?
-    ```
-
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
-
-    例如，在查看初始分析后，你可以提交以下提示：
-
-    ```text
-    How can I modify this method to implement effective input validation? What secure coding practices should I follow to prevent input validation bypass vulnerabilities?
-    ```
-
-1. 花点时间查看 GitHub Copilot 的修正建议。
-
-1. 在 SecurityValidator.cs 文件中，定位到 GenerateSessionToken 方法。********
-
-1. 在代码编辑器中，选择整个 GenerateSessionToken 方法。****
-
-1. 要求 GitHub Copilot 分析可预测的会话令牌生成漏洞。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    Why are predictable session tokens based on username and timestamp a security risk? How should secure, unpredictable session tokens be generated?
-    ```
-
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
-
-    例如，在查看初始分析后，你可以提交以下提示：
-
-    ```text
-    How can I modify this method to generate secure, unpredictable session tokens? What cryptographic techniques should I use to enhance session token security?
-    ```
-
-1. 花点时间查看 GitHub Copilot 的修正建议。
-
-1. 在 SecurityValidator.cs 文件中，定位到 ValidateEmail 方法。********
-
-1. 在代码编辑器中，选择整个 ValidateEmail 方法。****
-
-1. 要求 GitHub Copilot 分析弱电子邮件验证漏洞。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    What makes this email validation insufficient? What are the security risks of weak email validation, and how should proper email validation be implemented?
-    ```
-
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
-
-    例如，在查看初始分析后，你可以提交以下提示：
-
-    ```text
-    How can I modify this method to implement robust email validation? What techniques should I use to ensure email addresses are properly validated?
-    ```
-
-1. 在 SecurityValidator.cs 文件中，定位到 ValidatePasswordStrength 方法。********
-
-1. 在代码编辑器中，选择整个 ValidatePasswordStrength 方法。****
-
-1. 要求 GitHub Copilot 分析密码要求不足漏洞。
-
-    例如，你可以提交以下提示：
-
-    ```text
-    Why are these password requirements insufficient for security? What are proper password complexity requirements, and how should password strength be validated?
-    ```
-
-1. 查看 GitHub Copilot 的分析结果，然后请求获取具体的修正指导。
-
-    例如，在查看初始分析后，你可以提交以下提示：
-
-    ```text
-    How can I modify this method to enforce strong password requirements? What best practices should I follow for password strength validation?
-    ```
-
-1. 花点时间查看 GitHub Copilot 的修正建议。
+使用以下步骤分析信用卡数据存储违规：
 
 1. 在 Models 文件夹下，打开 Order.cs 文件，然后找到 PaymentInfo 类。************
 
 1. 在代码编辑器中，选择 PaymentInfo 类中的 CardNumber 和 CVV 属性。************
+
+    请注意，注释指示这些属性是安全漏洞。 存储完整卡号和 CVV 码违反了 PCI DSS 合规性要求。
 
 1. 要求 GitHub Copilot 分析信用卡数据存储冲突。
 
     例如，你可以提交以下提示：
 
     ```text
-    Why is storing full credit card numbers and CVV codes a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
+    Why is storing full credit card numbers and CVV codes in the PaymentInfo class a PCI DSS compliance violation? What are the proper ways to handle payment card data securely?
     ```
 
-1. 返回到 SecurityValidator.cs 文件，然后定位到 RunSecurityAudit 方法。********
+1. 查看 GitHub Copilot 的分析。
 
-1. 在代码编辑器中，选择整个 RunSecurityAudit 方法。****
+    GitHub Copilot 应说明 PCI DSS 要求禁止在授权后存储敏感的身份验证数据，包括 CVV 码。 它还应说明应对完整卡号进行令牌化或掩码处理。
 
-1. 要求 GitHub Copilot 分析信息泄漏漏洞。
+1. 请求具体的修正指导。
 
     例如，你可以提交以下提示：
 
     ```text
-    How does the security audit method create information disclosure vulnerabilities? What information should never be exposed in logs or error messages?
+    How should I modify the PaymentInfo class to comply with PCI DSS requirements? What properties should I add or change to store payment information securely?
+    ```
+
+1. 花点时间查看 GitHub Copilot 的修正建议。
+
+    应该会看到有关完全移除 CVV 属性的建议，将 CardNumber 替换为已掩码的版本或令牌，仅存储最后 4 位数字，并添加卡片类型属性以供显示。
+
+1. 打开 PaymentService.cs 文件，然后定位到 ProcessPayment 方法。********
+
+1. 在代码编辑器中，选择整个 ProcessPayment 方法。****
+
+    请注意，该方法会创建 PaymentInfo 对象并存储完整卡号和 CVV。 此方法还会记录敏感的付款信息。
+
+1. 要求 GitHub Copilot 分析 ProcessPayment 方法是否存在信用卡数据存储问题。
+
+    例如，你可以提交以下提示：
+
+    ```text
+    What security vulnerabilities exist in the ProcessPayment method related to credit card data storage and logging? How does this method contribute to the PCI DSS violations?
+    ```
+
+1. 查看 GitHub Copilot 的分析。
+
+    GitHub Copilot 应该会识别多个问题：记录完整卡号和 CVV 码、将这些值存储在 PaymentInfo 对象中，以及在整个处理流中暴露敏感数据。
+
+1. 请求 ProcessPayment 方法的具体修正指导。
+
+    例如，你可以提交以下提示：
+
+    ```text
+    How should I modify the ProcessPayment method to handle credit card data securely? What changes are needed to prevent storing and logging sensitive card information?
+    ```
+
+1. 打开 SecurityValidator.cs 文件，找到 ValidateCreditCard 方法。********
+
+1. 在代码编辑器中，选择整个 ValidateCreditCard 方法。****
+
+    请注意，此方法会记录完整的信用卡号，这是一个安全漏洞。
+
+1. 要求 GitHub Copilot 分析 ValidateCreditCard 方法。
+
+    例如，你可以提交以下提示：
+
+    ```text
+    What security issues exist in the ValidateCreditCard method? How should credit card validation be performed without logging sensitive data?
+    ```
+
+1. 查看 GitHub Copilot 的分析和修正建议。
+
+    GitHub Copilot 应该会生成安全问题列表以及针对安全编码做法的一些建议。 这些建议可能包括移除或掩蔽日志语句中的信用卡号，使用算法验证卡号，以及改进卡号长度和格式验证。
+
+1. 打开 Data 文件夹中的 OrderRepository.cs 文件。********
+
+1. 查看该文件以确定它是否处理 PaymentInfo 对象。
+
+    请注意，OrderRepository 类存储 Order 对象，其中包括 PaymentInfo。 如果 PaymentInfo 类存储完整卡号和 CVV 码，存储库将保留这些敏感数据。
+
+1. 要求 GitHub Copilot 分析 OrderRepository 对信用卡数据存储的影响。
+
+    例如，你可以提交以下提示：
+
+    ```text
+    How does the OrderRepository contribute to credit card data storage violations? What happens when Order objects containing PaymentInfo with full card numbers and CVV codes are stored?
+    ```
+
+1. 查看 GitHub Copilot 的分析。
+
+    GitHub Copilot 应该会说明存储库保留了 Order 和 PaymentInfo 对象中的所有数据。 如果已修复 PaymentInfo 模型以仅存储安全数据（令牌，最后 4 位数字），而存储库将自动存储安全数据。
+
+1. 关闭 OrderRepository.cs 文件。
+
+1. 要求 GitHub Copilot 为“修复信用卡数据存储违规”问题（包括输入验证和清理技术）提出全面的修正策略。
+
+    例如，你可以提交以下提示：
+
+    ```text
+    #codebase I need to resolve credit card data storage violations associated with the PaymentInfo model in the OrderRepository.cs file. Notice that the model currently stores full card numbers and CVV codes. The updated codebase should never store CVV codes (remove CVV storage completely), tokenize card numbers and store tokens instead of actual card numbers, mask the display of credit card numbers to show only last 4 digits, and implement proper encryption if card data must be stored temporarily. My acceptance criteria includes: CVV storage completely removed; Full card numbers replaced with tokens; Only the last 4 digits of a credit card are stored for display; Card type detection implemented. Review the codebase and identify the code files that must be updated to address the credit card data storage violations. Based on your code review and the current Chat conversation, suggest a phased approach to required file updates.
     ```
 
 1. 在修正阶段记录分析结果以供参考。
 
-    记下 GitHub Copilot 针对每个漏洞类别提供的建议。 本文档将指导你在下一个任务中实现安全修补程序。
+    记录 GitHub Copilot 针对这两个漏洞类别的建议。 本文档将指导你在下一个任务中实现安全修补程序。
 
 ### 使用 GitHub Copilot 的智能体模式解决问题
 
 GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复杂的安全修补程序。 与提供分析和建议的询问模式不同，智能体模式可以直接修改代码来实现安全改进。 此方法特别适用于系统安全修正，在这些场景，需要一致地解决多个相关漏洞。
 
-在此任务中，你将使用 GitHub Copilot 的智能体模式为 ContosoShopEasy 应用程序中的所有已识别漏洞实现全面的安全修补程序。
+在此任务中，你将使用 GitHub Copilot 的“智能体”模式修正分配给你的 GitHub 问题。
 
 使用以下步骤完成此任务：
 
@@ -590,34 +572,25 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 花点时间考虑你的修正策略。
 
-    创建基于使用 GitHub Copilot 的“询问”模式完成的分析的计划。 请考虑解决问题的顺序、修复之间的依赖关系以及如何验证是否已成功修正每个漏洞。
+    创建一个修正策略，该策略基于使用 GitHub Copilot 的“询问”模式完成的分析。 请考虑解决已分配问题的顺序、解决问题的方法以及如何验证代码漏洞是否已成功修正。
 
-    GitHub 问题（从严重问题开始，按优先级降序排列）如下所示：
+    分配给你的两个 GitHub 问题包括：
 
-    1. 🔐 修复产品搜索中的 SQL 注入漏洞
-    1. 🔐 将 MD5 密码哈希替换为安全替代项
-    1. 🔐 从调试日志记录中删除敏感数据
-    1. 🔐 删除硬编码的管理员凭据
-    1. 🔐 修复信用卡数据存储冲突
-    1. 🔐 修复输入验证安全性绕过
-    1. 🔐 修复可预测会话令牌生成
-    1. 🔐 改进电子邮件验证安全性
-    1. 🔐 加强密码安全要求
-    1. 🔐 减少错误消息中的信息泄漏
+    1. 🔐 修复产品搜索中的 SQL 注入漏洞（高优先级）
+    1. 🔐 修复信用卡数据存储违规（严重优先级）
 
-    这些问题与代码库中的特定文件和方法相关联。 按文件关联进行组织时，问题如下所示：
+    尽管信用卡存储问题的严重性较高，但 SQL 注入问题更为简单，可以先解决。 这样，就可以在处理更复杂的信用卡存储违规之前，使用较简单的修补程序来验证工作流。
 
-    - ProductService.cs****：问题 #1
-    - UserService.cs****:问题 #2 和 #3
-    - PaymentService.cs****：问题 #3
-    - SecurityValidator.cs****：问题 #4、#6、#7、#8、#9 和 #10
-    - Models/Order.cs****：问题 #5
+    这些问题与代码库中的特定文件和方法相关联：
 
-    修正策略应系统地解决每个问题，确保正确且一致地实施修补程序。
+    - SQL 注入问题****：ProductService.cs（SearchProducts 方法）
+    - 信用卡存储问题****：Models/Order.cs（PaymentInfo 类）、PaymentService.cs（ProcessPayment 方法）、SecurityValidator.cs（ValidateCreditCard 方法）和 OrderRepository.cs（数据持久性）
 
-    若要在训练练习中节省时间，请解决所有问题，然后将所有代码更新一起提交。 基于文件的修正策略在这种情况下适用。 但是，大批量处理问题并不是推荐的最佳做法。
+    > 注意****：“GitHub 拉取请求”扩展支持在单独的分支中分别处理问题。 分别解决问题可以提供更好的可追溯性、更简便的代码评审流程，以及在出现问题时更安全的回滚选项。 在生产环境中，应使用单独的提交和拉取请求分别解决每个问题。
 
-    在生产环境中，最好通过单独的提交单独解决每个问题。 此方法可以提供更好的可追溯性、更简便的代码评审流程，以及在出现问题时更安全的回滚选项。
+#### 解决 SQL 注入漏洞
+
+使用以下步骤解决 SQL 注入漏洞：
 
 1. 在代码编辑器中关闭所有打开的文件。
 
@@ -625,7 +598,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 将 ProductService.cs 文件添加到聊天上下文。****
 
-    SQL 注入问题与 ProductService.cs 文件中的 SearchProducts 方法相关联。
+    SQL 注入问题主要位于 ProductService.cs 文件的 SearchProducts 方法中。
 
 1. 要求 GitHub Copilot 解决 SQL 注入漏洞。
 
@@ -634,7 +607,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
     例如，可以将以下任务分配给智能体：
 
     ```text
-    Fix the SQL injection vulnerability in the SearchProducts method. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure the method still functions correctly for legitimate searches while preventing malicious input.
+    #codebase I need you to fix the SQL injection vulnerability in the SearchProducts method. Review the current Chat conversation related to SQL injection vulnerabilities to identify my expected code fixes and acceptance criteria. Remove the simulated SQL query logging that demonstrates the vulnerability, and implement proper input sanitization to safely handle search terms. Ensure that the method still functions correctly for legitimate searches while preventing malicious input. Update the DisplayKnownVulnerabilities method in SecurityValidator.cs to reflect that SQL injection protection is enabled.
     ```
 
 1. 监视智能体的进度。
@@ -645,6 +618,11 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
     始终在代码编辑器中查看 GitHub Copilot 建议的编辑内容。 确保在解决安全问题的同时保持功能正常。
 
+    这些更改应包括：
+    - 移除模拟 SQL 查询日志记录
+    - 移除或清理暴露搜索词的调试日志记录
+    - 添加输入验证或清理逻辑
+
     在生产环境中，团队在继续处理下一个问题之前，应完成以下清单：
 
     - 代码中已不存在该漏洞。
@@ -654,112 +632,96 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
     - 代码更新已清晰记录。
     - 在合并及关闭问题之前，已使用具有描述性的消息提交更改，并已通过同行评审。
 
-1. 实现安全密码哈希。
+#### 解决信用卡数据存储违规
 
-    聚焦于`UserService.cs` 文件并使用以下提示：
+信用卡数据存储违规跨越多个文件，需要协调更改。 需要修改数据模型、更新处理付款数据的服务，以及从日志中移除敏感数据。
 
-    ```text
-    Replace the MD5 password hashing with bcrypt or PBKDF2. Update the GetMd5Hash method to use a cryptographically secure hashing algorithm with proper salt generation. Ensure compatibility with existing user authentication while improving security.
-    ```
+使用以下步骤解决信用卡数据存储违规：
 
-1. 查看并测试密码哈希更改。
+1. 关闭编辑器中任何打开的文件，然后将 Order.cs 文件（位于 Models 文件夹中）添加到聊天上下文中。****
 
-    智能体将实现更强的密码哈希。 通过运行应用程序来测试更改，确保用户注册和登录仍然正常运行。
+    此文件中的 PaymentInfo 类存储完整的卡号和 CVV 码，这违反了 PCI DSS 合规性要求。
 
-1. 解决敏感数据日志记录问题（问题 #3）。
+1. 要求 GitHub Copilot 修复 PaymentInfo 类。
 
-    关注`PaymentService.cs` 和`UserService.cs` 文件，并对智能体发出指令：
+    例如，可以将以下任务分配给智能体：
 
     ```text
-    Fix sensitive data logging throughout the application. Remove logging of passwords, full credit card numbers, CVV codes, and other sensitive information. Implement secure logging that masks sensitive data while maintaining useful operational information.
+    Fix PCI DSS compliance violations in the PaymentInfo class in Order.cs. Remove the CVV property entirely as CVV codes should never be stored. Replace the CardNumber property with a CardLastFourDigits property that stores only the last 4 digits. Add a CardType property to identify the card brand (Visa, Mastercard, etc.). Update the constructor and any initializations accordingly.
     ```
 
-1. 移除硬编码管理员凭据（问题 #4）。
+1. 监视智能体的进度并查看建议的更改。
 
-    聚焦于`SecurityValidator.cs` 文件并使用以下提示：
+    智能体应修改 PaymentInfo 类以移除敏感的数据存储。 查看更改并选择“保留”（如果已正确解决问题）。****
+
+1. 关闭 Order.cs 文件，然后将 PaymentService.cs 文件添加到聊天上下文中。****
+
+    此文件中的 ProcessPayment 方法记录敏感的付款数据，并创建包含完整卡号和 CVV 代码的 PaymentInfo 对象。
+
+1. 要求 GitHub Copilot 修复 ProcessPayment 方法。
+
+    例如，可以将以下任务分配给智能体：
 
     ```text
-    Remove hardcoded admin credentials from the SecurityValidator class. Replace the hardcoded ADMIN_USERNAME and ADMIN_PASSWORD constants with a secure configuration approach using environment variables while maintaining the functionality for educational demonstration purposes.
+    Fix the credit card data handling in the ProcessPayment method in PaymentService.cs. Remove all logging of full card numbers, CVV codes, and other sensitive payment data. Update the PaymentInfo object creation to store only the last 4 digits of the card number and the card type, without storing CVV. Implement card number masking in any remaining log statements (show only last 4 digits). Ensure the payment processing logic still works correctly.
     ```
 
-1. 修复信用卡数据存储冲突（问题 #5）。
+1. 监视智能体的进度。
 
-    关注`Models/Order.cs` 文件，并对智能体发出指令：
+    这些更改应包括：
+    - 移除或屏蔽日志语句中的敏感数据
+    - 更新 PaymentInfo 对象创建，以仅使用最后 4 位数字
+    - 移除 CVV 存储
+    - 根据需要添加卡片类型检测逻辑
+
+1. 花点时间查看代码编辑器中建议的更改，然后在“聊天”视图中选择“保留”。****
+
+    始终在代码编辑器中查看 GitHub Copilot 建议的编辑内容。 确保在解决安全问题的同时保持功能正常。
+
+1. 关闭 PaymentService.cs 文件，然后将 SecurityValidator.cs 文件添加到聊天上下文中。****
+
+    ValidateCreditCard 方法记录完整的信用卡号。
+
+1. 要求 GitHub Copilot 修复 ValidateCreditCard 方法。
+
+    例如，可以将以下任务分配给智能体：
 
     ```text
-    Fix PCI DSS compliance violations in the Order model. Remove or modify the CardNumber and CVV properties to avoid storing full credit card numbers and CVV codes. Implement secure payment data handling that stores only last 4 digits for display purposes.
+    Fix the credit card validation logging in the ValidateCreditCard method in SecurityValidator.cs. Remove or mask the full credit card number in log statements, showing only the last 4 digits if logging is necessary. Ensure the validation logic continues to work correctly. Update the DisplayKnownVulnerabilities method to reflect that credit card data storage is now secure.
     ```
 
-1. 修复输入验证绕过问题（问题 #6）。
+1. 监视智能体的进度。
 
-    指示智能体修复输入验证漏洞：
+    智能体应更新日志记录以掩蔽敏感数据，同时维护验证功能。
 
-    ```text
-    Fix the ValidateInput method in SecurityValidator that currently always returns true despite detecting threats. Implement proper input validation that actually rejects dangerous content when SQL injection, XSS, or other malicious patterns are detected.
-    ```
+1. 花点时间查看代码编辑器中建议的更改，然后在“聊天”视图中选择“保留”。****
 
-1. 实现安全会话令牌生成（问题 #7）。
+    始终在代码编辑器中查看 GitHub Copilot 建议的编辑内容。 确保在解决安全问题的同时保持功能正常。
 
-    聚焦于会话令牌漏洞：
+1. 考虑对 OrderRepository 的影响。
 
-    ```text
-    Replace the predictable session token generation in GenerateSessionToken method with a cryptographically secure random token generator. Remove the username and timestamp-based pattern and implement unpredictable tokens with sufficient entropy.
-    ```
+    OrderRepository.cs 文件存储 Order 对象，其中包括 PaymentInfo。 由于已将 PaymentInfo 类更新为仅存储安全数据（最后 4 位数字，卡类型），因此存储库会自动保留安全数据，而不是完整卡号和 CVV 码。 无需直接更改存储库，但应在测试期间验证这一点。
 
-1. 加强电子邮件验证（问题 #8）。
+1. 生成应用程序以确保所有更改均已成功编译。
 
-    解决弱电子邮件验证问题：
-
-    ```text
-    Fix the ValidateEmail method that only checks for '@' and '.' characters. Implement proper email format validation using regex or built-in validation methods. Remove email logging and add appropriate length restrictions.
-    ```
-
-1. 改进密码要求（问题 #9）。
-
-    关注密码强度验证：
-
-    ```text
-    Strengthen the ValidatePasswordStrength method that currently only requires 4 characters. Implement proper password complexity requirements including minimum 8 characters, uppercase, lowercase, numbers, and special characters. Remove password logging.
-    ```
-
-1. 减少信息泄漏（问题 #10）。
-
-    解决调试日志记录和安全审核问题：
-
-    ```text
-    Fix information disclosure vulnerabilities by removing or restricting the RunSecurityAudit method and reducing verbose error messages throughout the application. Remove sensitive system information from logs while maintaining useful debugging capabilities.
-    ```
-
-1. 测试应用程序。
-
-    在智能体对每个漏洞类别实现修补程序后，运行应用程序以确保功能得以保留：
+    在终端中运行以下命令：
 
     ```bash
     dotnet build
-    dotnet run
     ```
 
-1. 验证安全改进措施不会破坏核心功能。
-
-    确保产品搜索、用户注册、付款处理和其他核心功能在实现安全修补程序后继续正常工作。
+    如果出现编译错误，请使用 GitHub Copilot 来帮助识别和解决在安全修复过程中引入的任何问题。 常见问题可能包括：
+    - 引用已移除的属性（CVV、完整卡号）
+    - 构造函数参数不匹配
+    - 工作分配中的类型不匹配
 
 ### 测试并验证重构的代码
 
 安全修正后的全面测试可确保漏洞修补程序不会引入功能回归，同时可验证安全改进措施的有效性。 此验证流程需同时测试应用程序的安全层面与业务功能。 恰当的测试能够验证应用程序在提升安全性的同时，仍保持其预期行为。
 
-在此任务中，你将对更新后的 ContosoShopEasy 应用程序进行系统性测试，确保安全问题已得到解决，且核心功能保持完好。
+在此任务中，你将系统地测试更新后的 ContosoShopEasy 应用程序，以验证是否已解决两个安全问题，并且核心功能保持不变。
 
 使用以下步骤完成此任务：
-
-1. 生成应用程序并解决任何编译错误。
-
-    运行以下命令以确保代码编译成功：
-
-    ```bash
-    dotnet build
-    ```
-
-    如果出现编译错误，请使用 GitHub Copilot 来帮助识别和解决在安全修复过程中引入的任何问题。
 
 1. 运行完整的应用程序以观察整体行为。
 
@@ -771,49 +733,32 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
     将输出结果与原始应用程序运行中的笔记进行比较。 应会看到记录的敏感信息显著减少。
 
-1. 测试 SQL 注入修复（问题 #1）。
+1. 测试 SQL 注入修复。
 
-    验证`SearchProducts` 方法是否不再记录易受攻击的 SQL 查询，且搜索功能对于合法搜索词是否仍能正常工作。
+    验证 SearchProducts 方法是否不在记录直接将用户输入拼接到查询字符串中的模拟 SQL 查询。 应用程序应：
 
-1. 验证密码安全改进（问题 #2）。
+    - 仍正确执行产品搜索
+    - 不显示易受攻击的 SQL 查询日志记录
+    - 在不暴露 SQL 注入漏洞的情况下安全地处理搜索词
+    - 不过度记录原始搜索词
 
-    检查用户注册和登录进程是否不再记录纯文本密码，以及是否实现了更强大的密码哈希。 应用程序仍应正确对用户进行身份验证。
+1. 测试信用卡数据存储修复。
 
-1. 确认敏感数据日志记录修复（问题 #3）。
+    验证 PaymentInfo 类和相关代码是否不再存储或记录完整的信用卡号和 CVV 码。 应用程序应：
 
-    确保在成功处理交易的同时，付款流程和用户操作不再记录密码、完整的信用卡号或 CVV 码。
+    - 不记录完整的信用卡号（检查是否已掩码，例如 ****1234）
+    - 根本不记录 CVV 码
+    - 不在 PaymentInfo 对象中存储 CVV 码
+    - 仅存储卡号的最后 4 位
+    - 继续正确处理付款（模拟）
 
-1. 验证硬编码凭据删除（问题 #4）。
+1. 验证整体安全性改进。
 
-    验证硬编码管理员凭据是否不再显示在日志或安全审核中，而管理员功能仍可通过安全配置访问。
+    将控制台输出与初始观测结果进行比较。 关键改进应包括：
 
-1. 测试信用卡存储合规性（问题 #5）。
-
-    确认订单模型不再存储完整的信用卡号或 CVV 码，并且仅保留遮蔽付款信息用于显示目的。
-
-1. 验证输入验证修复（问题 #6）。
-
-    确认改进后的 ValidateInput 方法现在能够正确拒绝危险输入，而不是仅记录警告并返回 true。
-
-1. 检查会话令牌安全性（问题 #7）。
-
-    如果应用程序在运行过程中生成会话令牌，需确认这些令牌看起来是随机且不可预测的，而不是沿用之前的用户名-时间戳模式。
-
-1. 测试电子邮件验证改进（问题 #8）。
-
-    验证电子邮件验证现在是否正确地拒绝无效电子邮件格式，而不是接受包含“@" and ".”字符的任何字符串。
-
-1. 验证密码要求增强功能（问题 #9）。
-
-    测试密码验证现在是否强制实施适当的复杂性要求，而不是接受任意 4 个字符的字符串。
-
-1. 审查信息泄漏修复（问题 #10）。
-
-    检查是否删除或限制了安全审核方法，以及详细错误消息是否不再公开敏感的系统信息。
-
-1. 将整体安全状况与原始版本进行比较。
-
-    运行应用程序并将控制台输出与初始观测结果进行比较。 应用程序应在保持所有核心功能的同时，表现出显著提升的安全性。
+    - SQL 注入****：没有显示用户输入拼接的模拟 SQL 查询
+    - 信用卡数据：**** 日志或存储的数据中没有完整卡号或 CVV 码
+    - 应用程序核心功能（产品搜索，付款处理）仍能正常运行
 
 1. 记录任何剩余的问题或改进方面。
 
@@ -827,60 +772,57 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 使用以下步骤完成此任务：
 
-1. 查看对代码库所做的所有更改。
+1. 打开 Visual Studio Code 的“源代码管理”视图，然后查看对每个更新后的文件所做的更改。
 
-    使用 Git 查看修改的文件：
+    查找修正过程中可能产生的任何意外更改。 确保所有更改都符合修正策略，并且未产生任何新漏洞。
 
-    ```bash
-    git status
-    git diff
+1. 要求 GitHub Copilot 创建全面的提交消息。
+
+    例如，可以在“聊天”视图中使用以下提示：
+
+    ```text
+    I need to create a commit message that summarizes the security fixes I implemented for two GitHub issues: "Fix SQL Injection Vulnerability in Product Search" and "Fix Credit Card Data Storage Violations." The commit message should clearly describe the changes made to address each issue, including specific code modifications and the overall impact on application security. Draft a detailed commit message that captures all relevant information.
     ```
 
-1. 暂存所有与安全相关的更改以便提交。
+1. 花点时间查看建议的提交消息。
 
-    将修改后的文件添加到暂存区域：
+    确保它准确反映了所做的安全性改进，并提供足够的详细信息供将来参考。
 
-    ```bash
-    git add .
-    ```
+    例如，提交消息可能类似于以下示例：
 
-1. 提交所有安全修补程序，其中包含引用所有 GitHub 问题的综合消息。
-
-    创建一个提交，以解决培训练习中发现的所有安全漏洞：
-
-    ```bash
-    git commit -m "Fix all ContosoShopEasy security vulnerabilities
+    ```text
+    Fix SQL injection and credit card data storage vulnerabilities
 
     Security improvements implemented:
     - Fix SQL injection in ProductService SearchProducts method
-    - Replace MD5 with secure password hashing (bcrypt/PBKDF2)
-    - Remove sensitive data from debug logging (passwords, card numbers, CVV)
-    - Remove hardcoded admin credentials, use environment variables
-    - Fix PCI DSS violations in Order model (remove full card storage)
-    - Fix input validation bypass to properly reject dangerous input
-    - Implement secure session token generation with crypto randomness
-    - Strengthen email validation with proper format checking
-    - Improve password requirements (8+ chars, complexity rules)
-    - Reduce information disclosure from security audit and debug logs
-
-    Fixes #1 #2 #3 #4 #5 #6 #7 #8 #9 #10"
+      - Remove vulnerable SQL query logging with user input
+      - Implement proper input handling and sanitization
+    
+    - Fix PCI DSS violations for credit card data storage
+      - Remove CVV property from PaymentInfo class
+      - Replace CardNumber with CardLastFourDigits
+      - Add CardType property for card brand identification
+      - Update PaymentService to not log or store sensitive card data
+      - Mask credit card numbers in SecurityValidator logs
+    
+    Fixes #[SQL_INJECTION_ISSUE_NUMBER] #[CREDIT_CARD_ISSUE_NUMBER]
     ```
 
-    > 注意****：在生产环境中，每个问题通常应通过单独的提交进行解决，并配合独立测试和代码评审。 这里使用单一提交方法只是为了在培训练习中节省时间。
+1. 将 `[SQL_INJECTION_ISSUE_NUMBER]` 和 `[CREDIT_CARD_ISSUE_NUMBER]` 替换为 GitHub 存储库中的实际问题编号。
 
-1. 将更改推送到 GitHub 存储库。
+    可以在 Visual Studio Code 的“GitHub 拉取请求”视图中或通过在 GitHub 上查看问题来查找这些编号。
 
-    ```bash
-    git push origin main
-    ```
+    > 注意****：在生产环境中，每个问题通常应通过单独的提交进行解决，并配合独立测试和代码评审。 此处将这两个修补程序组合在单个提交中来简化训练练习工作流。
 
-1. 验证 GitHub 问题是否已自动关闭。
+1. 暂存并提交更改，然后将更改推送到 GitHub 存储库（或同步）。
 
-    导航到 GitHub 上的存储库，并检查那些被提交信息引用的问题是否已标记为“已关闭”。
+1. 打开 GitHub 并验证 GitHub 问题是否已自动关闭。
 
-1. 查看提交历史记录，确保正确记录所有安全修补程序。
+    导航到 GitHub 上的存储库，检查提交消息中引用的两个问题是否标记为已关闭。 当提交消息包括“修复 #[issue_number]”语法时，GitHub 会自动关闭问题。
 
-    验证提交消息是否清楚地描述了安全改进措施，以及是否为将来的参考提供了完善的审核线索。
+1. 查看提交历史记录，确保已正确记录安全修补程序。
+
+    验证提交消息是否清楚地描述了安全改进，并为将来的参考提供了良好的审核线索。
 
 ## 清理
 
