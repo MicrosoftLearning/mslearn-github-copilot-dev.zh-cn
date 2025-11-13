@@ -1,8 +1,8 @@
-<!-- ---
+---
 lab:
-    title: 'Exercise - Resolve GitHub issues using GitHub Copilot'
-    description: 'Learn how to identify and address performance bottlenecks and code inefficiencies using GitHub Copilot tools.'
---- -->
+  title: 练习 - 使用 GitHub Copilot 解决 GitHub 问题
+  description: 了解如何在 Visual Studio Code 中使用 GitHub Copilot 识别并解决代码安全漏洞。
+---
 
 # 使用 GitHub Copilot 解决 GitHub 问题
 
@@ -16,7 +16,7 @@ GitHub 问题是跟踪项目中的 Bug、改进和任务的有效方式。
 
 ## 开始之前
 
-实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
+实验室环境必须包括以下资源：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
 
 如果你将本地电脑用作本练习的实验室环境：
 
@@ -132,7 +132,7 @@ GitHub 问题是一个集中式跟踪系统，可用于跟踪 bug、安全漏洞
 
 1. 选择存储库的“问题”选项卡，然后花一分钟时间查看“问题”页。****
 
-    应该会看到列出了 10 个待解决问题。 请注意以下内容：
+    你应该会看到列出的 10 个未解决问题。 注意有关这些问题的以下详细信息：
 
     - 所有问题都标记为 bug。
     - 所有问题都具有优先级。
@@ -248,7 +248,7 @@ ContosoShopEasy 应用程序采用了企业应用程序的典型分层体系结�
 
 1. 向下滚动，找到 PaymentInfo 类。****
 
-    注意关于 CardNumber 和 CVV 属性的注释。 此代码与分配给你自己的“修复信用卡数据存储违规”问题相关。****
+    注意有关 CardNumber 和信用卡验证码 (CVV) 属性的注释。 此代码与分配给你自己的“修复信用卡数据存储违规”问题相关。****
 
 1. 展开 Security 文件夹，然后打开 SecurityValidator.cs 文件。********
 
@@ -414,7 +414,7 @@ SQL 注入漏洞存在于 ProductService.cs 文件中，并可能存在于 Produ
 
 1. 花点时间查看 GitHub Copilot 的修正建议。
 
-    应该会看到有关使用参数化查询或 ORM 方法的建议，这些方法有助于管理 SQL 注入风险。 还可能会看到有关输入验证和清理技术的建议。 GitHub Copilot 通常会提供演示如何实施建议的代码片段。
+    应该会看到有关使用参数化查询或对象关系映射 (ORM) 方法的建议，这些方法有助于管理 SQL 注入风险。 还可能会看到有关输入验证和清理技术的建议。 GitHub Copilot 通常会提供演示如何实施建议的代码片段。
 
 1. 打开 Data 文件夹中的 ProductRepository.cs 文件，然后找到 SearchProducts 方法。************
 
@@ -456,7 +456,7 @@ SQL 注入漏洞存在于 ProductService.cs 文件中，并可能存在于 Produ
 
 1. 在代码编辑器中，选择 PaymentInfo 类中的 CardNumber 和 CVV 属性。************
 
-    请注意，注释指示这些属性是安全漏洞。 存储完整卡号和 CVV 码违反了 PCI DSS 合规性要求。
+    请注意，注释指示这些属性是安全漏洞。 存储完整的卡号和 CVV 代码违反了支付卡行业数据安全标准 (PCI DSS) 合规性要求。
 
 1. 要求 GitHub Copilot 分析信用卡数据存储冲突。
 
@@ -508,7 +508,7 @@ SQL 注入漏洞存在于 ProductService.cs 文件中，并可能存在于 Produ
     How should I modify the ProcessPayment method to handle credit card data securely? What changes are needed to prevent storing and logging sensitive card information?
     ```
 
-1. 打开 SecurityValidator.cs 文件，找到 ValidateCreditCard 方法。********
+1. 打开 SecurityValidator.cs 文件，然后找到 ValidateCreditCard 方法。********
 
 1. 在代码编辑器中，选择整个 ValidateCreditCard 方法。****
 
@@ -560,7 +560,7 @@ SQL 注入漏洞存在于 ProductService.cs 文件中，并可能存在于 Produ
 
 ### 使用 GitHub Copilot 的智能体模式解决问题
 
-GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复杂的安全修补程序。 与提供分析和建议的询问模式不同，智能体模式可以直接修改代码来实现安全改进。 此方法特别适用于系统安全修正，在这些场景，需要一致地解决多个相关漏洞。
+GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复杂的安全修补程序。 与提供分析和建议的询问模式不同，智能体模式可以直接修改代码来实现安全改进。 此方法适用于系统安全修正，在这些场景，需要一致地解决多个相关漏洞。
 
 在此任务中，你将使用 GitHub Copilot 的“智能体”模式修正分配给你的 GitHub 问题。
 
@@ -572,14 +572,14 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 花点时间考虑你的修正策略。
 
-    创建一个修正策略，该策略基于使用 GitHub Copilot 的“询问”模式完成的分析。 请考虑解决已分配问题的顺序、解决问题的方法以及如何验证代码漏洞是否已成功修正。
+    创建一个修正策略，该策略采用使用 GitHub Copilot 的“询问”模式完成的分析。 请考虑解决已分配问题的顺序、解决问题的方法以及如何验证代码漏洞是否已成功修正。
 
     分配给你的两个 GitHub 问题包括：
 
     1. 🔐 修复产品搜索中的 SQL 注入漏洞（高优先级）
     1. 🔐 修复信用卡数据存储违规（严重优先级）
 
-    尽管信用卡存储问题的严重性较高，但 SQL 注入问题更为简单，可以先解决。 这样，就可以在处理更复杂的信用卡存储违规之前，使用较简单的修补程序来验证工作流。
+    尽管信用卡存储问题的严重性较高，但 SQL 注入问题更为简单，可以先解决。 使用此方法，可以在处理更复杂的信用卡存储违规之前，使用较简单的修补程序来验证工作流。
 
     这些问题与代码库中的特定文件和方法相关联：
 
@@ -700,7 +700,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 考虑对 OrderRepository 的影响。
 
-    OrderRepository.cs 文件存储 Order 对象，其中包括 PaymentInfo。 由于已将 PaymentInfo 类更新为仅存储安全数据（最后 4 位数字，卡类型），因此存储库会自动保留安全数据，而不是完整卡号和 CVV 码。 无需直接更改存储库，但应在测试期间验证这一点。
+    OrderRepository.cs 文件存储 Order 对象，其中包括 PaymentInfo。 你已更新 PaymentInfo 类以仅存储安全数据（最后 4 位数字、卡类型）。 因此，存储库会自动保存安全数据，而不是完整的卡号和 CVV 代码。 无需对存储库进行直接更改，但应在测试期间验证数据安全性。
 
 1. 生成应用程序以确保所有更改均已成功编译。
 
@@ -731,7 +731,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
     dotnet run
     ```
 
-    将输出结果与原始应用程序运行中的笔记进行比较。 应会看到记录的敏感信息显著减少。
+    将输出结果与原始应用程序运行中的笔记进行比较。 你应该会看到记录的敏感信息减少。
 
 1. 测试 SQL 注入修复。
 
@@ -762,7 +762,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 记录任何剩余的问题或改进方面。
 
-    记录任何可能需要额外关注的安全问题，以及任何需要解决的功能问题。
+    记录任何可能需要更多关注的安全问题，以及任何需要解决的功能问题。
 
 ### 提交更改并关闭问题
 
@@ -774,7 +774,7 @@ GitHub Copilot 的智能体模式支持跨多个文件和方法自动实现复�
 
 1. 打开 Visual Studio Code 的“源代码管理”视图，然后查看对每个更新后的文件所做的更改。
 
-    查找修正过程中可能产生的任何意外更改。 确保所有更改都符合修正策略，并且未产生任何新漏洞。
+    查找修复过程中引入的任何意外更改。 确保所有更改都符合修正策略，并且未产生任何新漏洞。
 
 1. 要求 GitHub Copilot 创建全面的提交消息。
 
