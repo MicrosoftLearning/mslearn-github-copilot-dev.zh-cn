@@ -12,7 +12,7 @@ Vibe 编码是一种使用 AI 工具（如 GitHub Copilot 智能体）来生成�
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用现有的 GitHub Copilot 订阅完成本练习。
+> **重要说明**：要完成本练习，需要提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
@@ -323,7 +323,7 @@ GitHub Copilot 智能体可以使用产品需求和线框图来开发原型应�
         ├── wireframe-navigation.txt
         ├── wireframe-product-details.txt
         ├── wireframe-products.txt
-            ```└── wireframe-shopping-cart.txt
+        └── wireframe-shopping-cart.txt
     ```
 
 1. 将 PRD 和线框图添加到聊天上下文。
@@ -499,4 +499,4 @@ GitHub Copilot 智能体可以使用产品需求和线框图来开发原型应�
 
 ## 清理
 
-完成本练习后，请花点时间确保你未更改不想保留的 GitHub 帐户或 GitHub Copilot 订阅。 如果你进行了任何更改，请根据需要还原。 如果你将本地电脑用作实验室环境，则可以存档或删除为此练习创建的原型应用文件夹。
+现在，你已经完成了本练习，请花点时间确保你没有对 GitHub 帐户或 GitHub Copilot 订阅作出任何你不希望保留的更改。 如果你进行了任何更改，请根据需要还原。 如果你将本地电脑用作实验室环境，则可以存档或删除为此练习创建的原型应用文件夹。

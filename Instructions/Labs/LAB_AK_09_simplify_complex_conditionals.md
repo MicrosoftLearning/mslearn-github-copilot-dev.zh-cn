@@ -12,11 +12,11 @@ lab:
 
 完成此练习大约需要 30 分钟****。
 
-> **重要说明**：若要完成本练习，必须提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
+> **重要说明**：要完成本练习，需要提供自己的 GitHub 帐户和 GitHub Copilot 订阅。 如果没有 GitHub 帐户，可以<a href="https://github.com/" target="_blank">注册</a>免费的个人帐户，并使用 GitHub Copilot 免费版计划来完成练习。 如果可以从实验室环境中访问 GitHub Copilot Pro、GitHub Copilot Pro+、GitHub Copilot Business 或 GitHub Copilot Enterprise 订阅，则可以使用你现有的 GitHub Copilot 订阅来完成本练习。
 
 ## 开始之前
 
-实验室环境必须包括以下内容：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、具有 C# 开发工具包扩展的 Visual Studio Code，以及访问启用了 GitHub Copilot 的 GitHub 帐户。
+实验室环境必须具备以下条件：Git 2.48 或更高版本、.NET SDK 9.0 或更高版本、带有 C# Dev Kit 扩展的 Visual Studio Code，以及启用了 GitHub Copilot 的 GitHub 帐户的访问权限。
 
 ### 配置实验室环境
 
@@ -56,7 +56,7 @@ lab:
 
     1. 导航到实验室环境中的“下载”文件夹。
 
-    1. 右键单击 GHCopilotEx9LabApps.zip，然后选择“全部提取”******。
+    1. 右键单击 GHCopilotEx9LabApps.zip，然后选择“全部提取”********。
 
     1. 选择“完成时显示解压缩的文件”，然后选择“解压缩”。
 
@@ -88,7 +88,7 @@ lab:
 
 ## 练习场景
 
-你是一家咨询公司的软件开发人员。 你的客户需要帮助重构复杂的条件逻辑，以提升代码的可读性和可维护性。 你被分配到以下应用：
+你是一家咨询公司的软件开发人员。 你的客户需要重构复杂的条件逻辑方面的帮助，以提升代码的可读性和可维护性。 你被分配到以下应用：
 
 - 电商定价引擎：第一个应用是电商定价引擎，它基于各种业务规则计算动态定价。 条件包括会员等级、订单金额、优惠券码、产品类别以及配送规则。
 - 贷款审批工作流：第二个应用是贷款审批工作流，它基于各种因素评估贷款申请。 条件包括收入、就业状况、负债率、抵押物和信用记录。
@@ -111,7 +111,7 @@ lab:
 
 1. 确保在 Visual Studio Code 中打开了 GHCopilotEx9LabApps 文件夹。
 
-    如果尚未下载示例代码项目，请参阅“开始之前”部分****。
+    如果未下载示例代码项目，请参阅“开始之前”部分****。
 
 1. 验证 ECommercePricingEngine 代码项目是否成功生成****。
 
@@ -153,7 +153,7 @@ lab:
 
     该方法复杂且可读性差，包含多个处理不同折扣场景的嵌套条件。 这种复杂性源于需要根据用户身份、订单详情和优惠券码来应用的各种业务规则。
 
-1. 右键单击所选代码，然后选择“Copilot” > “解释”********。
+1. 右键单击所选代码，然后选择“Copilot” >“解释”********。
 
     GitHub Copilot 将分析 CalculateFinalPrice 方法，并提供代码功能的详细解释。
 
@@ -252,7 +252,7 @@ lab:
     For more details, see the full implementation in ECommercePricingDemo.cs, especially the `ECommercePricing.PricingEngine.CalculateFinalPrice` method.
     ```
 
-1. 比较 GitHub Copilot 的解释与你自己对 `CalculateFinalPrice` 方法中复杂条件逻辑的观察结果。
+1. 比较 GitHub Copilot 的解释与你自己对`CalculateFinalPrice` 方法中复杂条件逻辑的观察结果。
 
     自己的观察结果或许已经明确了主要的折扣来源：会员等级、优惠券码以及批量购买激励。 GitHub Copilot 的解释应当能印证你的观察结果，同时提供额外见解，包括这些折扣路径的叠加方式，以及支配定价计算的关键业务规则。
 
@@ -266,7 +266,7 @@ lab:
 
     输出应显示不同用户、订单和优惠券组合对应的基准价格和折扣后价格。 在本练习结束时，重构的代码必须生成与原始代码相同的结果。
 
-    你可能已经注意到，输出中包含了针对无效输入和恶意操纵定价行为的基础安全测试。 尽管这些测试并未涵盖所有可能的攻击途径，也未达到生产应用所需的测试级别，但它们足以提醒我们：确保代码质量与安全性是一项必须满足的要求。 SecurityTest.cs 文件是 ECommercePricingEngine 项目的一部分****。
+    你可能注意到，输出中包含了针对无效输入和恶意操纵定价行为的基础安全测试。 尽管这些测试并未涵盖所有可能的攻击途径，也未达到生产应用所需的测试级别，但它们足以提醒我们：确保代码质量与安全性是一项必须满足的要求。 SecurityTest.cs 文件是 ECommercePricingEngine 项目的一部分****。
 
     > [!NOTE]
     > 输出的副本可在 ECommercePricingEngine 文件夹中包含的 Output-ECommercePricingEngine.txt 文件内找到****。 如果需要对比结果，或者修改了示例数据，也可以创建自己的输出文件。 完成本练习后，将使用输出文件来确保重构的代码生成与原始代码相同的结果。
@@ -285,7 +285,7 @@ GitHub Copilot 是分析复杂代码并明确代码重构机会的出色工具�
 
 1. 使用拖放操作将 ECommercePricingDemo.cs 文件添加到“聊天”上下文****。
 
-    尽管 ECommercePricingDemo.cs 文件已在 Visual Studio Code 编辑器中打开，但将其添加到“聊天”上下文能促使 GitHub Copilot 分析整个代码文件，进而生成更精准的建议。 使用 GitHub Copilot 时，将相关文件添加到“聊天”上下文是最佳做法，即使在提示中包含 @workspace 或 #codebase 标记也是如此********。
+    尽管 ECommercePricingDemo.cs 文件已在 Visual Studio Code 编辑器中打开，但将其添加到“聊天”上下文能促使 GitHub Copilot 分析整个代码文件，进而生成更精准的建议。 使用 GitHub Copilot 时，将相关文件添加到“聊天”上下文是最佳做法，即使在提示中包含@workspace 或 #codebase 标记也是如此********。
 
 1. 提交提示，让 GitHub Copilot 明确可改善与主要折扣路径相关的代码模块化的重构机会。
 
@@ -296,7 +296,7 @@ GitHub Copilot 是分析复杂代码并明确代码重构机会的出色工具�
     - 列出应考虑提取到辅助方法的主要折扣路径。
     - 强调在简化代码结构的同时维护业务逻辑的重要性。
 
-    在分析代码时，让 GitHub Copilot 考虑代码交互通常是有益的。 可以使用 @workspace 或 #codebase 标记告诉 GitHub Copilot 在其分析中包含整个代码库********。
+    在分析代码时，让 GitHub Copilot 考虑代码交互通常是有益的。 可以使用@workspace 或 #codebase 标记告诉 GitHub Copilot 在其分析中包含整个代码库********。
 
     例如：
 
@@ -426,12 +426,12 @@ GitHub Copilot 有三种模式：“提问”、“编辑”和“智能体”**
 
 1. 使用“聊天”视图将任务分配给 GitHub Copilot 智能体。
 
-    GitHub Copilot 智能体将评估任务和代码库，以开发用于重构 CalculateFinalPrice 并将会员折扣逻辑提取到新的辅助方法的方法。 智能体将在各个阶段测试代码更新，以确保重构成功且业务逻辑保持不变。
+    GitHub Copilot 智能体将评估任务和代码库，以开发用于重构 CalculateFinalPrice 并将会员折扣逻辑提取到新的帮助器方法的方法。 智能体将在各个阶段测试代码更新，以确保重构成功且业务逻辑保持不变。
 
     提交任务后，GitHub Copilot 智能体将开始处理任务。 可以在“聊天”视图中监视其进度。
 
     > [!NOTE]
-    > 如果需要对任务进行更改，可以编辑“聊天”视图中的文本并重新提交。 GitHub Copilot 智能体将重新评估任务并继续处理。
+    > 如果需要对任务进行更改，可以编辑“聊天”视图中的文本并重新提交。 GitHub Copilot 智能体将重新评估任务并继续处理该任务。
 
 1. 在 GitHub Copilot 智能体处理任务时监视“聊天”视图。
 
