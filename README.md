@@ -1,3 +1,5 @@
+**⚠️ This GitHub repo will retire on 28th November 2025.** 
+
 # Microsoft 实验室练习
 <!-- Change the title above as appropriate -->
 
